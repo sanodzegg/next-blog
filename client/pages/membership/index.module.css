@@ -1,0 +1,61 @@
+.membership {
+    width: 100%;
+    background-color: #000;
+    color: #fff;
+    padding-top: 100px;
+}
+
+.membership h1 {
+    font-size: 80px;
+    line-height: 1.1em;
+    text-align: center;
+}
+
+.cardWrapper {
+    display: flex;
+    column-gap: 40px;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.perkWrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 40px;
+    margin-top: 130px;
+}
+
+.storiesParent {
+    background-color: #fff;
+    width: 100%;
+    margin-top: 100px;
+    color: #000;
+    padding-top: 130px;
+}
+
+.storiesParent h1 {
+    font-size: 55px;
+    line-height: 1.1em;
+    font-weight: 700;
+    color: #000;
+
+    max-width: 730px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+}
+
+.storiesWrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 40px;
+}
+
+.child0 {
+    background-color: red;
+}

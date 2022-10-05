@@ -1,0 +1,15 @@
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.mainFlex {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: flex-start;
+  margin-top: 100px;
+}

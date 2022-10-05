@@ -1,0 +1,94 @@
+.cardWrapper {
+    padding: 40px 45px;
+    padding-top: 55px;
+    position: relative;
+    border: 1px solid #151515;
+    border-radius: 15px;
+}
+
+.saleWrapper {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background-color: #c1ff84;
+    color: #000;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.5em;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 5px;
+}
+
+.cardWrapper h5 {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+
+.cardWrapper h3 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.1em;
+}
+
+.cardWrapper span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: #7f7f7f;
+    text-transform: uppercase;
+}
+
+.cardWrapper p {
+    max-width: 315px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5em;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+.cardWrapper li {
+    list-style-type: none;
+
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    margin: 10px 0;
+}
+
+.cardWrapper li:first-child {
+    margin-top: 0;
+}
+
+.cardWrapper li:last-child {
+    margin-bottom: 40px;
+}
+
+.cardWrapper button {
+    background-color: #c1ff84;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1em;
+    text-transform: uppercase;
+    padding: 20px 35px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color .4s ease-in-out
+}
+
+.cardWrapper button:hover {
+    background-color: #b2ff66;
+}
+
+.main {
+    background-color: #151515;
+    border: none;
+}

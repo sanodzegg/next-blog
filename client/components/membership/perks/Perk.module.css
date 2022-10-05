@@ -1,0 +1,14 @@
+.perkWrapper {
+    padding: 40px;
+    border-radius: 10px;
+    border: 1px solid #151515;
+}
+
+.perkWrapper h6 {
+    text-transform: uppercase;
+    margin: 25px 0 15px 0;
+    color: #7f7f7f;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5em;
+}

@@ -1,0 +1,54 @@
+.flow {
+    width: 100%;
+    padding: 25px 0;
+    background-color: #EBEAEA;
+    position: relative;
+    overflow: hidden;
+}
+
+.textWrapper {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+    animation: flow 100s linear infinite;
+
+    width: 100%;
+    user-select: none;
+}
+
+.textWrapper div {
+    display: flex;
+    align-items: center;
+}
+
+.textWrapper div span {
+    font-size: 30px;
+    color: #7a7a7a;
+    line-height: 30px;
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+.textWrapper p {
+    color: #7a7a7a;
+    font-size: 12px;
+    line-height: 1.5em;
+    font-weight: 600;
+    text-transform: uppercase;
+    position: relative;
+    white-space: nowrap;
+}
+
+@keyframes flow {
+    0% {
+        transform: translate(0, -50%);
+    }
+
+    100% {
+        transform: translate(-100%, -50%);
+    }
+}

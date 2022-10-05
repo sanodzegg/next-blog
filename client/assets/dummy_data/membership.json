@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Reader Plan",
+        "monthly_cost": 4.00,
+        "perks": [
+            "Premium Articles",
+            "Writing tips and tricks",
+            "Personal support team",
+            "Learn how to monetize your blog"
+        ]
+    },
+    {
+        "name": "Academic Plan",
+        "sale": 30,
+        "yearly_cost": 40.00,
+        "perks": [
+            "Premium Articles",
+            "Writing tips and tricks",
+            "Personal support team",
+            "Learn how to monetize your blog"
+        ]
+    }
+]
