@@ -22,7 +22,7 @@ export const Navbar = () => {
                     <li><a href="">categories</a></li>
                     <li><a href="">about</a></li>
                     <li><Link href="/membership">membership</Link></li>
-                    <li><a href="">contact</a></li>
+                    <li><a href="/contact">contact</a></li>
                     <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} />
                     <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => router.push("/user")} />
                 </ul>

@@ -1,32 +1,17 @@
 import { NextPage } from 'next';
-import classes from "./Story.module.css";
-import Image from 'next/image';
-
-type dataTypes = {
-    name: string,
-    position: string,
-    review: string,
-    image: string
-}
+import CardWrapper from './CardWrapper';
 
 type props = {
-    data: dataTypes,
+    data: object[] | undefined,
 }
 
 const StoryCard: NextPage<props> = ({ data }) => {
     return (
-        <div className={classes.storyCardWrapper}>
-            <p>{data.review}</p>
-            <div className={classes.userWrapper}>
-                <div className={classes.userIMG}>
-                    <Image src={data.image} width="100%" height="100%" />
-                </div>
-                <div className={classes.user}>
-                    <p>{data.name}</p>
-                    <span>{data.position}</span>
-                </div>
-            </div>
-        </div>
+        <section>
+            {data && data.map((el:any, i:number) => {
+                return <CardWrapper name={el.name} position={el.position} review={el.review} image={el.image} key={i} />
+            })}
+        </section>
     )
 }
 

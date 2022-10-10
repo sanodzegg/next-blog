@@ -6,12 +6,6 @@
         "image": "https://assets.website-files.com/621d17d6111ed45c13adf318/621f42bc352f584e0a47206a_review01.jpg"
     },
     {
-        "name": "kathryn",
-        "position": "project manager",
-        "review": "Eget cras et viverra in amet, sit. Augue elementum vitae gravida faucibus velit enim amet faucibus. Sed egestas morbi sed sem mi. Venenatis nibh ullamcorper aliquet sed. Id cras aliquet vel scelerisque nibh vestibulum at orci, et nullam massa ultrices nulla nunc.",
-        "image": "https://assets.website-files.com/621d17d6111ed45c13adf318/621f42bd377af62f258e6afa_review04.jpg"
-    },
-    {
         "name": "bessie",
         "position": "software developer",
         "review": "Nec nulla tempus egestas placerat enim. Pulvinar phasellus amet fermentum neque risus ipsum eu. Feugiat ac mattis amet purus. In viverra id nam vel elit.",
@@ -22,6 +16,12 @@
         "position": "team leader",
         "review": "Cursus nibh lectus et lectus ut viverra non elementum sed faucibus mauris porta mattis. Integer blandit enim dis aliquam. Quisque odio sodales nisl et urna. Egestas a vel.",
         "image": "https://assets.website-files.com/621d17d6111ed45c13adf318/621f42bd1fead8828c57b60a_review03.jpg"
+    },
+    {
+        "name": "kathryn",
+        "position": "project manager",
+        "review": "Eget cras et viverra in amet, sit. Augue elementum vitae gravida faucibus velit enim amet faucibus. Sed egestas morbi sed sem mi. Venenatis nibh ullamcorper aliquet sed. Id cras aliquet vel scelerisque nibh vestibulum at orci, et nullam massa ultrices nulla nunc.",
+        "image": "https://assets.website-files.com/621d17d6111ed45c13adf318/621f42bd377af62f258e6afa_review04.jpg"
     },
     {
         "name": "cody",

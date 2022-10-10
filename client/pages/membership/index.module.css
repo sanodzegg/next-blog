@@ -28,7 +28,7 @@
     margin-top: 130px;
 }
 
-.storiesParent {
+.storiesParent, .FAQParent {
     background-color: #fff;
     width: 100%;
     margin-top: 100px;
@@ -51,11 +51,19 @@
     max-width: 1280px;
     margin: 0 auto;
 
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 40px;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 40px;
 }
 
-.child0 {
-    background-color: red;
+.storiesWrapper section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 40px;
+}
+
+.FAQParent {
+    margin-top: 0;
+    padding-top: 125px;
 }

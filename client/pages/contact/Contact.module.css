@@ -1,0 +1,22 @@
+.contactWrapper {
+    background-color: #000;
+    padding: 130px 0;
+    text-align: center  ;
+}
+
+.contactWrapper h1 {
+    font-size: 80px;
+    line-height: 1.1em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fff;
+}
+
+.contactWrapper p {
+    color: #7f7f7f;
+    font-size: 14px;
+    line-height: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}

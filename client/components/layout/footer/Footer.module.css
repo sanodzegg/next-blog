@@ -1,0 +1,133 @@
+.footerWrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    padding-top: 130px;
+}
+
+.footerHead {
+    text-align: center;
+}
+
+.footerHead h4, .footerCol h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #7f7f7f;
+    line-height: 1.5em;
+    text-transform: uppercase;
+}
+
+.footerHead h1 {
+    font-size: 80px;
+    line-height: 1.1em;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.footerHead button, .colInput button {
+    background-color: #c1ff84;
+    padding: 20px 35px;
+    border-radius: 10px;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: unset;
+    border: unset;
+    cursor: pointer;
+    transition: background-color .4s ease-in-out
+}
+
+.footerHead button:hover, .colInput button:hover {
+    background-color: #b2ff66;
+}
+
+.footerWrapper footer {
+    padding: 60px 30px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerCol {
+    height: 220px;
+}
+
+.footerCol:nth-child(1) {
+    width: 50%;
+    margin-right: 50px;
+}
+
+.footerCol:nth-child(2) {
+    margin-right: 50px;
+}
+
+.footerCol h3 {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5em;
+    margin-top: 25px;
+}
+
+.colInput {
+    position: relative;
+    max-width: 750px;
+}
+
+.colInput input {
+    padding: 15px 25px;
+    color: #000;
+    font-size: 18px;
+    line-height: 1.5em;
+    font-weight: 400;
+    background-color: #FFF;
+    border: 1px solid #dadadaa1;
+    box-shadow: 8px 16px 50px #0000001a;
+    width: 100%;
+    margin-top: 25px;
+    padding-right: 120px;
+}
+
+.colInput input::placeholder {
+    color: #000;
+}
+
+.colInput button {
+    padding: 13.5px 15px;
+    font-size: 12px;
+    line-height: 1.1em;
+    font-weight: 600;
+    position: absolute;
+    top: 34px;
+    right: 10px;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90px;
+    margin-top: 25px;
+}
+
+
+.footerCol li {
+    list-style: none;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+.mainList {
+    color: #7f7f7f;
+    font-size: 14px !important;
+    line-height: 1.5em;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.footerCol {
+    width: 25%;
+}

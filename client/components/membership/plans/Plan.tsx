@@ -15,6 +15,7 @@ interface propsInt {
 
 import CheckedIcon from "../../../assets/icons/check_icon.svg";
 import Image from 'next/image';
+import uniqueId from 'lodash.uniqueid';
 
 const PlanCard: NextPage<propsInt> = ({ data }) => {
 
@@ -33,8 +34,8 @@ const PlanCard: NextPage<propsInt> = ({ data }) => {
             <h3>$ {price}<span>{duration}</span></h3>
             <p>Consider becoming a premium member, you will get access to the following perks:</p>
             <ul>
-                {data.perks?.map((e, i) => {
-                    return <li key={i}><Image src={CheckedIcon.src} width={CheckedIcon.width} height={CheckedIcon.height} /> {e}</li>
+                {data.perks?.map(e => {
+                    return <li key={uniqueId()}><Image src={CheckedIcon.src} width={CheckedIcon.width} height={CheckedIcon.height} /> {e}</li>
                 })}
             </ul>
             <button>get unlimited access</button>

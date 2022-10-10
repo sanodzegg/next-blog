@@ -8,6 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(require("./routes/blog"));
+app.use(require("./routes/mailer"));
 const dbo = require("./db/conn");
  
 app.listen(port, () => {

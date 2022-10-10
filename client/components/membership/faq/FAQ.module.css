@@ -1,0 +1,17 @@
+.faq {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.faq h1 {
+    font-size: 56px;
+    line-height: 1.1em;
+    margin-bottom: 80px;
+    user-select: none;
+}
+
+.questionWrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+}

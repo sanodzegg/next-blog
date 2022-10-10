@@ -1,0 +1,59 @@
+.boxWrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+
+.questionBox {
+    padding: 30px;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.questionInactive {
+    transition: height .3s ease-in-out;
+    height: 90px;
+    overflow: hidden;
+}
+
+.questionActive {
+    transition: height .3s ease-in-out;
+    height: 225px;
+    overflow: hidden;
+}
+
+.questionBox h4 {
+    font-size: 18px;
+    line-height: 1.5em;
+    font-weight: 700;
+    user-select: none;
+}
+
+.questionBox p {
+    font-size: 18px;
+    line-height: 1.5em;
+    font-weight: 400;
+    margin-top: 30px;
+}
+
+.wrapperHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapperHeader span, .wrapperHeader img {
+    user-select: none;
+}
+
+.active, .inactive {
+    transition: .3s ease-in-out all;
+}
+
+.active {
+    transform: rotate(180deg);
+}
+
+.inactive {
+    transform: rotate(0deg);
+}
