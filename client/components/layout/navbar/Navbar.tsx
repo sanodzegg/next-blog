@@ -1,8 +1,8 @@
 import Image from "next/image";
 import classes from "./Navbar.module.css";
 
-import SearchIcon from "../../../assets/logos/search.svg";
-import LoginIcon from "../../../assets/logos/login.svg";
+import SearchIcon from "../../../assets/icons/search.svg";
+import LoginIcon from "../../../assets/icons/login.svg";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -20,9 +20,9 @@ export const Navbar = () => {
                 <ul className={classes.list}>
                     <li><Link href="/">home</Link></li>
                     <li><a href="">categories</a></li>
-                    <li><a href="">about</a></li>
+                    <li><Link href="/about">about</Link></li>
                     <li><Link href="/membership">membership</Link></li>
-                    <li><a href="/contact">contact</a></li>
+                    <li><Link href="/contact">contact</Link></li>
                     <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} />
                     <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => router.push("/user")} />
                 </ul>

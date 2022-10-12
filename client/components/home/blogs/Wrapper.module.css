@@ -1,0 +1,76 @@
+.pager {
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    padding: 15px 24px;
+
+    position: relative;
+    text-align: right;
+    margin-top: 80px;
+}
+
+.pager span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.pager button {
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5em;
+    color: #333333;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.prevButton {
+    float: left;
+}
+
+.blogWrapperSection {
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 40px;
+    row-gap: 40px;
+}
+
+.blog {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 395px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.blog span {
+    margin: 20px 0;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.5em;
+    color: #7f7f7f;
+}
+
+.blog h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 1.1em;
+    color: #000;
+    font-weight: 700;
+}
+
+.blog p {
+    font-size: 20px;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: #000;
+}

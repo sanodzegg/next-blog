@@ -7,8 +7,6 @@ type props = {
 }
 
 const QuestionWrapper:NextPage<props> = ({ data }) => {
-    console.log(data);
-    
     return (
         <div className={classes.boxWrapper}>
             {data && data.map((e:any, i:number) => {

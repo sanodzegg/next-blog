@@ -1,0 +1,57 @@
+{
+    "hero": {
+        "main": {
+            "header": "I am a content writer and blogger who loves to write and help people to learn. I always try to stay on top of the latest trends.",
+            "author": {
+                "name": "Esther Howard",
+                "picture": "https://uploads-ssl.webflow.com/621d17d6111ed45c13adf318/621e7fa1ed68fc5d97747937_message-avatar.jpg"
+            },
+            "story": "Tellus lectus enim nibh mattis diam morbi quis. Sed congue nullam maecenas vulputate vel. Senectus nibh consectetur massa ultrices condimentum sodales in. Adipiscing risus ullamcorper tristique. Eros, quis et ac sit aenean. Ipsum nunc bibendum et sed sed quisque nibh laoreet lacus. Neque molestie massa accumsan augue eget tellus. Nullam sit nunc nam nulla neque sed elit eu tellus. Ante est purus ac vel egestas lacus aliquam cursus."
+        },
+        "secondary": {
+            "header": "I am an avid blogger and I love to write about anything and everything, helping people to be healthier and to smile more",
+            "author": {
+                "name": "John Doe",
+                "picture": "https://uploads-ssl.webflow.com/621d17d6111ed45c13adf318/621e7f4cffebfeb5961e4bf9_about-photo.jpg"
+            },
+            "story": "Enim egestas quis ullamcorper cursus nullam nisi, non, nulla. Vitae cursus convallis proin porta habitasse diam quis convallis. Augue molestie tincidunt sed in lacus, sodales etiam. Aliquam cursus amet pharetra sit ipsum magna. Facilisis rhoncus eget tempor, duis in Auctor pulvinar enim egestas fermentum cursus convallis."
+        }
+    },
+    "teamMembers": [
+        {
+            "name": "Cody Fisher",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621f358c1fead8edf7574cc6_team05.jpg",
+            "position": "Software Developer"
+        },
+        {
+            "name": "Courtney Henry",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d422d4e09607168f68e06_author07.jpg",
+            "position": "Team Leader"
+        },
+        {
+            "name": "Esther Howard",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d41be3fef4a8c7a1b0f49_author01.jpg",
+            "position": "Software Developer"
+        },
+        {
+            "name": "Jenny Wilson",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d421b7f79c2192dfe617a_author06.jpg",
+            "position": "UI/UX Designer"
+        },
+        {
+            "name": "Kristin Watson",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d41e992af879a30685de1_author02.jpg",
+            "position": "Scrum Master"
+        },
+        {
+            "name": "Ronald Richards",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d420721efea4682f07081_author04.jpg",
+            "position": "UI/UX Designer"
+        },
+        {
+            "name": "Wade Warren",
+            "picture": "https://assets.website-files.com/621d3c0126be8c7b596780fe/621d41fe9af39e0644f01b2c_author03.jpg",
+            "position": "Software Tester"
+        }
+    ]
+}

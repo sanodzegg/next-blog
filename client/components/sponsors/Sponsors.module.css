@@ -1,0 +1,9 @@
+.sponsors {
+    width: 100%;
+    padding: 55px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 40px;
+}

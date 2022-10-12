@@ -33,6 +33,16 @@ const Form:NextPage<props> = ({ sessionData }) => {
         subject: "",
         message: ""
     });
+
+    useEffect(() => {
+        setInputs({
+            name: sessionData?.name ? sessionData.name : "",
+            email: sessionData?.email ? sessionData.email : "",
+            phone: sessionData?.phone ? sessionData.phone : "",
+            subject: sessionData?.subject ? sessionData.subject : "",
+            message: sessionData?.message ? sessionData.message : ""
+        });
+    }, [sessionData]);
     
     const [errors, setErrors] = useState({
        name: false,
@@ -127,6 +137,12 @@ const Form:NextPage<props> = ({ sessionData }) => {
         }
     }
 
+    useEffect(() => {
+        if(inputs.subject !== "") {
+            handleSubject();
+        }
+    }, [inputs.subject]);
+
     const blurWrapper = () => {
         handleNameBlur();
         handleEmailBlur();
@@ -152,23 +168,24 @@ const Form:NextPage<props> = ({ sessionData }) => {
     const submit = async () => {
         const canSend = await handleFormSubmit();
         if(canSend) {
-            // const res = await axios.post("http://localhost:5000/sendmail", inputs);
-            // const status = await res.status;
-            // if(status === 200) {
-            //     setInputs({
-            //         name: "",
-            //         email: "",
-            //         phone: "",
-            //         subject: "",
-            //         message: ""
-            //     });
-            // }
+            const res = await axios.post("http://localhost:5000/sendmail", inputs);
+            const status = await res.status;
+            if(status === 200) {
+                setInputs({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    subject: "",
+                    message: ""
+                });
+            }
+            sessionStorage.setItem("contactMail", "");
         } else {
             return;
             //handle error
         }
     }
-    
+
     return (
         <div className={classes.formWrapper}>
             <div className={classes.formRow}>
@@ -184,7 +201,7 @@ const Form:NextPage<props> = ({ sessionData }) => {
                     selector && 
                         <div className={classes.optionWrapper} ref={optionWrapperRef}>
                             {subjects.map(e => {
-                                return <span key={uniqueId()} onClick={(e) => {setInputs((prev) => ({...prev, subject: (e.target as HTMLElement).innerText})); setErrors((prev) => ({...prev, subject: true}))}}>{e}</span>
+                                return <span key={uniqueId()} onClick={(e) => {setInputs((prev) => ({...prev, subject: (e.target as HTMLElement).innerText})); setErrors((prev) => ({...prev, subject: true})); handleSubject()}}>{e}</span>
                             })}
                         </div>
                     }

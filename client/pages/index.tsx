@@ -1,25 +1,27 @@
 import type { NextPage } from 'next'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 
 import { Hero } from "../components/hero/Hero";
-import { FeaturedBlog } from '../components/featured/FeaturedBlog';
+import FeaturedBlog from '../components/home/featured/FeaturedBlog';
 import axios from 'axios';
+import Blogs from '../components/home/blogs/Wrapper';
+import FeaturedAuthors from '../components/home/side/FeaturedAuthors';
+
 
 const Home: NextPage = () => {
+  const [featuredPost, setFeaturedPost] = useState({});
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    // async function getRecords() {
-    //   const creds = {
-    //     username: "Saxeli",
-    //     password: "wewewew"
-    //   }
-    //   const resp = axios.post(`http://localhost:5000/user/add`, creds);
-    //   console.log(resp);
-            
-    // }
+    async function getRecords() {
+      const resp = await axios.get(`https://newsapi.org/v2/everything?domains=css-tricks.com&apiKey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}`);
+      const data = await resp.data.articles;
+      setData(data);
+      setFeaturedPost(data[0]);
+    }
   
-    // getRecords();
+    getRecords();
   
     return;
   }, []);
@@ -28,7 +30,13 @@ const Home: NextPage = () => {
     <div className={styles.container}>
         <Hero />
         <section className={styles.mainFlex}>
-          <FeaturedBlog />
+          <div className={styles.mainCol}>
+            <FeaturedBlog post={featuredPost} />
+            <Blogs blogs={data.slice(1)} />
+          </div>
+          <aside className={styles.mainCol}>
+            <FeaturedAuthors />
+          </aside>
         </section>
     </div>
   )

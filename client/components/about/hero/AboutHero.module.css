@@ -1,0 +1,72 @@
+.mainHeroWrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 130px 0;
+}
+
+.mainHeroWrapper h3 {
+    font-weight: 700;
+    font-size: 54px;
+    line-height: 1.1em;
+}
+
+.mainContainer {
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.userPicture {
+    border-radius: 50%;
+}
+
+.user h5 {
+    font-size: 18px;
+    line-height: 1.5em;
+    font-weight: 400;
+    color: #000;
+    margin-left: 15px;
+}
+
+.mainContainer p {
+    width: 70%;
+}
+
+.secondaryHeroWrapper {
+    width: 100%;
+    background-color: #ebebeb;
+    padding: 130px 0;
+}
+
+.inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.story {
+    max-width: 510px;
+}
+
+.story h3 {
+    font-size: 33px;
+    line-height: 1.1em;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.story p {
+    font-size: 16px;
+    line-height: 1.5em;
+    font-weight: 400;
+}
