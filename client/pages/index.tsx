@@ -7,6 +7,7 @@ import FeaturedBlog from '../components/home/featured/FeaturedBlog';
 import axios from 'axios';
 import Blogs from '../components/home/blogs/Wrapper';
 import FeaturedAuthors from '../components/home/side/FeaturedAuthors';
+import FeaturedTags from '../components/home/side/FeaturedTags';
 
 
 const Home: NextPage = () => {
@@ -36,6 +37,7 @@ const Home: NextPage = () => {
           </div>
           <aside className={styles.mainCol}>
             <FeaturedAuthors />
+            <FeaturedTags />
           </aside>
         </section>
     </div>
