@@ -168,7 +168,7 @@ const Form:NextPage<props> = ({ sessionData }) => {
     const submit = async () => {
         const canSend = await handleFormSubmit();
         if(canSend) {
-            const res = await axios.post("http://localhost:5000/sendmail", inputs);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/sendmail`, inputs);
             const status = await res.status;
             if(status === 200) {
                 setInputs({

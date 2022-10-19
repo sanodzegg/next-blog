@@ -28,10 +28,9 @@ const FeaturedAuthors:NextPage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}`);
-            const data = await res.data.articles;
-            const filtered = getBestThree(data);
-            setAuthors(filtered);
+            // const res = await axios.get(`https://newsdata.io/api/1/news?apikey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}&q=CSS`);
+            // const data = await res.data.articles;
+            // const filtered = getBestThree(data);
         }
 
         getData();
@@ -40,9 +39,9 @@ const FeaturedAuthors:NextPage = () => {
     return (
         <div className={classes.featured}>
             <span>featured authors</span>
-            {authors && authors.map(e => {
+            {/* {authors && authors.map(e => {
                 return <p onClick={() => e?.url && window.open(e?.url, "_blank")} key={uniqueId()}>{e?.author}</p>
-            })}
+            })} */}
         </div>
     );
 }

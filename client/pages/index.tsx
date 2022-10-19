@@ -16,10 +16,10 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     async function getRecords() {
-      const resp = await axios.get(`https://newsapi.org/v2/everything?domains=css-tricks.com&apiKey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}`);
-      const data = await resp.data.articles;
-      setData(data);
-      setFeaturedPost(data[0]);
+      // const resp = await axios.get(`https://newsapi.org/v2/everything?domains=css-tricks.com&apiKey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}`);
+      // const data = await resp.data.articles;
+      // setData(data);
+      // setFeaturedPost(data[0]);
     }
   
     getRecords();

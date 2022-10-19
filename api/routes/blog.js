@@ -5,7 +5,7 @@ const blogRoutes = express.Router();
 const dbo = require("../db/conn");
  
 const ObjectId = require("mongodb").ObjectId;
- 
+
 blogRoutes.route("/blogs").get((req, res) => {
  let db_connect = dbo.getDb("blogs");
  db_connect
@@ -36,18 +36,6 @@ blogRoutes.route("/blog/add").post((req, response) => {
    level: req.body.level,
  };
  db_connect.collection("blogs").insertOne(myobj, (err, res) => {
-   if (err) throw err;
-   response.json(res);
- });
-});
-
-blogRoutes.route("/user/add").post((req, response) => {
- let db_connect = dbo.getDb();
- let myobj = {
-   username: req.body.username,
-   password: req.body.password,
- };
- db_connect.collection("users").insertOne(myobj, (err, res) => {
    if (err) throw err;
    response.json(res);
  });

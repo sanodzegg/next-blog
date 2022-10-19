@@ -1,0 +1,117 @@
+.wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 50px 0;
+    margin-top: 30px;
+}
+
+.inner {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 50px;
+}
+
+.avatar {
+    border: 3px solid #b3ff665f;
+    padding: 25px;
+    width: fit-content;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.avatar input {
+    display: none;
+}
+
+.avatar.filled {
+    padding: 0;
+    width: 160px;
+    height: 160px;
+}
+
+.avatar.filled span {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.user {
+    width: 50%;
+}
+
+.user label {
+    font-size: 16px;
+}
+
+.user input {
+    display: block;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    border-radius: 10px;
+    border: unset;
+    outline: unset;
+    background-color: #ececec;
+    width: 100%;
+    margin: 10px 0;
+    color: #000;
+}
+
+.user input::placeholder {
+    color: #121212;
+}
+
+.user input:disabled {
+    color: #8a8a8a;
+}
+
+.buttons button {
+    background-color: #c1ff84;
+    padding: 15px 25px;
+    border-radius: 10px;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    outline: unset;
+    border: unset;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+}
+
+.buttons button:hover {
+    background-color: #b2ff66;
+}
+
+.buttons .disabled {
+    pointer-events: none;
+    cursor: unset;
+    background-color: #c6c6c6;
+    color: #5c5c5c;
+    transition: all .4s ease-in-out;
+}
+
+.buttons .disabled:hover {
+    background-color: #c6c6c6;
+}
+
+.buttons {
+    margin-top: 30px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    column-gap: 40px;
+}
+
+.cpBtn {
+    background-color: transparent !important;
+    border: 1px solid #c1ff84 !important;
+}
+
+.cpBtn:hover {
+    background-color: #b2ff66 !important;
+}

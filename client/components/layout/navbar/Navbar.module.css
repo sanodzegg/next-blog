@@ -50,3 +50,7 @@
 .list span:nth-child(2n) {
   margin: 0 12.5px !important;
 }
+
+.navbarInner > ul span {
+  color: #b2ff66;
+}

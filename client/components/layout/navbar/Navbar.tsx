@@ -6,11 +6,21 @@ import LoginIcon from "../../../assets/icons/login.svg";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+
+type stateTypes = {
+    username: string
+}
 
 export const Navbar = () => {
 
     const router = useRouter();
-    
+
+    const user = useSelector((state:RootState) => {
+        return (state.user.profile as stateTypes)
+    });
+
     return (
         <nav className={classes.navbar}>
             <div className={classes.navbarInner}>
@@ -25,6 +35,7 @@ export const Navbar = () => {
                     <li><Link href="/contact">contact</Link></li>
                     <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} />
                     <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => router.push("/user")} />
+                    {user && <span>{user.username}</span>}
                 </ul>
             </div>
         </nav>

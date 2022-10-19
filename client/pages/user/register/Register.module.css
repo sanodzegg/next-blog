@@ -63,11 +63,11 @@
     background-color: #b2ff66;
 }
 
-.buttons .register {
+.buttons .login {
     background-color: transparent;
     border: 1px solid #b2ff66;
 }
 
-.buttons .register:hover {
+.buttons .login:hover {
     background-color: transparent !important;
 }
