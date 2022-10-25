@@ -58,7 +58,6 @@ const LoginPage: NextPage = () => {
         router.push("/");
       }
     }
-    
   }
 
   return (

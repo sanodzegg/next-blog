@@ -1,11 +1,10 @@
-import { NextPage } from 'next';
 import CardWrapper from './CardWrapper';
 
 type props = {
     data: object[] | undefined,
 }
 
-const StoryCard: NextPage<props> = ({ data }) => {
+const StoryCard = ({ data }:props) => {
     return (
         <section>
             {data && data.map((el:any, i:number) => {

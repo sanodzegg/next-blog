@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import Image from 'next/image';
 import classes from "./FeaturedBlog.module.css";
 import moment from "moment"
@@ -15,7 +14,7 @@ type postTypes = {
   description: string
 }
 
-const FeaturedBlog:NextPage<props> = ({ post }) => {
+const FeaturedBlog = ({ post }:props) => {
   if(Object.values(post).length > 0) {
     return (
       <div className={classes.featuredWrapper} onClick={() => post.url && window.open(post.url, "_blank")}>

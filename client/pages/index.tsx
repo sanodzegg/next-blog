@@ -9,7 +9,6 @@ import Blogs from '../components/home/blogs/Wrapper';
 import FeaturedAuthors from '../components/home/side/FeaturedAuthors';
 import FeaturedTags from '../components/home/side/FeaturedTags';
 
-
 const Home: NextPage = () => {
   const [featuredPost, setFeaturedPost] = useState({});
   const [data, setData] = useState([]);

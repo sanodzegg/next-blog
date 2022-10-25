@@ -12,15 +12,22 @@ const userSlice = createSlice({
     reducers: {
         LogIn(state, payload) {
             state.auth = true;
-            const { username, email, picture } = payload.payload;
-            state.profile = { username, email, picture };
+            const { username, email, picture, aboutMe } = payload.payload;
+            
+            state.profile = { username, email, picture, aboutMe };
             if(payload.payload.token) {
                 const CookieData = {
-                    username: username,
+                    id: payload.payload.id,
                     token: payload.payload.token
                 }
                 Cookies.set("user", JSON.stringify(CookieData), { expires: 1/12 });
             }
+        },
+        LogOut(state) {
+            state.auth = false;
+            state.profile = {};
+            Cookies.remove("user");
+            // window.location.reload();
         }
     }
 });

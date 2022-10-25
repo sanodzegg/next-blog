@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import classes from "./Wrapper.module.css";
 
@@ -18,7 +17,7 @@ type blogsTypes = {
     description : string
 }
 
-const Blogs:NextPage<props> = ({ blogs }) => {
+const Blogs = ({ blogs }:props) => {
     const [page, setPage] = useState(1);
     const [slicedBlogs, setSlicedBlogs] = useState<blogsTypes[]>([]);
 

@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Image from "next/image";
 import classes from "./AboutHero.module.css";
 
@@ -17,7 +16,7 @@ type authorTypes = {
     picture: string
 }
 
-const AboutHero:NextPage<props> = ({ data }) => {
+const AboutHero = ({ data }:props) => {
     return (
         <div className={classes.mainHeroWrapper}>
             <h3>{data.header}</h3>

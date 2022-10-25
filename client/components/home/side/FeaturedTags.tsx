@@ -1,10 +1,9 @@
 import uniqueId from "lodash.uniqueid";
-import { NextPage } from "next";
 import classes from "./Side.module.css";
 
 const tags = ["Books", "Clothes", "Coaching", "Ecommerce", "Exercise", "Health", "Holiday", "Marketing", "Tech", "Travel", "University"];
 
-const FeaturedTags:NextPage = () => {
+const FeaturedTags = () => {
     return (
         <div className={classes.tags}>
             <span>tags</span>

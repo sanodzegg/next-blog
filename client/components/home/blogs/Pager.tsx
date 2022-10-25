@@ -1,8 +1,6 @@
-import { NextPage } from "next";
 import classes from "./Wrapper.module.css";
 
-const Pager:NextPage<any> = ({ current, changePage }) => {
-
+const Pager = ({ current, changePage }:any) => {
     return (
         <div className={classes.pager}>
             <span>{current + " / 3"}</span>

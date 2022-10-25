@@ -8,18 +8,22 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import UserLoader from "./Loader/UserLoader";
 
 type stateTypes = {
     username: string
 }
 
 export const Navbar = () => {
-
     const router = useRouter();
 
     const user = useSelector((state:RootState) => {
         return (state.user.profile as stateTypes)
     });
+
+    const UserName = () => {
+        return Object.values(user).length > 0 ? <span>{user.username}</span> : <UserLoader />
+    }
 
     return (
         <nav className={classes.navbar}>
@@ -33,9 +37,9 @@ export const Navbar = () => {
                     <li><Link href="/about">about</Link></li>
                     <li><Link href="/membership">membership</Link></li>
                     <li><Link href="/contact">contact</Link></li>
-                    <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} />
-                    <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => router.push("/user")} />
-                    {user && <span>{user.username}</span>}
+                    <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} alt="search icon" />
+                    <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => user ? router.push(`/${user.username}`) : router.push(`/user`) } alt="login icon" />
+                    <UserName />
                 </ul>
             </div>
         </nav>

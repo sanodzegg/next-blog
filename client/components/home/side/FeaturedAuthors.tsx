@@ -1,6 +1,5 @@
 import axios from "axios";
 import uniqueId from "lodash.uniqueid";
-import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import classes from "./Side.module.css";
 
@@ -17,13 +16,11 @@ const getBestThree = (data:dataType[]) => {
     });
     
     const filtered = authors.filter(e => e !== undefined && !e?.author.includes("www")).slice(0, 3);
-    console.log(filtered);
-    
     
     return filtered;
 }
 
-const FeaturedAuthors:NextPage = () => {
+const FeaturedAuthors = () => {
     const [authors, setAuthors] = useState<(dataType | undefined)[]>([]);
 
     useEffect(() => {

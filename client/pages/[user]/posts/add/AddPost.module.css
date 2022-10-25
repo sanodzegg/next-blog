@@ -1,0 +1,198 @@
+.wrapper {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 50px 120px;
+    position: relative;
+}
+.wrapper input, .wrapper textarea, .selectorWrapper {
+    width: 100%;
+    margin: 20px 0;
+    display: block;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    border-radius: 10px;
+    border: unset;
+    outline: unset;
+    background-color: #ececec;
+    width: 100%;
+    color: #000;
+}
+
+.buttons {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.buttons button {
+    background-color: #c1ff84;
+    padding: 20px 35px;
+    border-radius: 10px;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: unset;
+    border: unset;
+    cursor: pointer;
+    transition: background-color .4s ease-in-out;
+}
+
+.buttons button:hover {
+    background-color: #b2ff66;
+}
+
+.selectorWrapper {
+    position: relative;
+    height: 55px;
+    width: 100%;
+    cursor: pointer;
+    min-width: 450px;
+    margin-bottom: 0;
+    padding-right: 25px;
+}
+
+.selectorWrapper.open {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.selectorWrapper span {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    color: #757588;
+}
+
+.selectorWrapper.full {
+    height: auto;
+}
+
+.selectorWrapper p {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    background-color: #d6d6d6;
+    margin: 5px;
+}
+
+.selectorWrapper .arrow {
+    right: 15px;
+    top: 50%;
+    left: unset !important;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 25px;
+    transform: translateY(-80%) rotate(180deg);
+}
+.selectorWrapper .arrow.active {
+    top: 65%;
+    transform: translateY(-80%) rotate(0deg);
+} 
+
+.tagOptions {
+    top: 75%;
+    left: 120px;
+    background-color: #ececec;
+    border-radius: 0 0 10px 10px;
+    height: 0;
+    overflow: hidden;
+    transition: height .5s ease-in-out;
+    min-width: 450px;
+}
+
+@media screen and (max-width: 710px) {
+    .wrapper section {
+        width: 100% !important;
+    }
+    .tagOptions, .selectorWrapper {
+        min-width: unset;
+        width: 100% !important;
+    }
+}
+
+.tagOptions.active {
+    height: 370px;
+}
+
+.tagOptions input {
+    margin: 0;
+    padding: 10px 20px;
+}
+
+.tag {
+    padding: 5px 20px;
+    color: #6b6b74;
+    transition: background-color .3s ease-in-out;
+    cursor: pointer;
+}
+
+.tag:hover {
+    background-color: #d4d4d4;
+}
+
+.tag:first-child {
+    margin-top: 10px;
+}
+
+.tag:last-child {
+    margin-bottom: 10px;
+}
+
+.wrapper section {
+    width: 50%;
+}
+
+.textAreaWrapper {
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools {
+    background-color: #ececec;
+    border: 10px 10px 0 0;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.tools span {
+    display: inline-block;
+    padding: 10px;
+    border-right: 1px solid #c1c1c1;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    color: #606060;
+}
+
+.tools span:hover {
+    background-color: #c8c8c8;
+}
+
+.tools .bold {
+    font-weight: 500;
+}
+
+.tools .italic {
+    font-style: italic;
+}
+
+.genSample {
+    border: unset !important;
+    border-left: 1px solid #c1c1c1 !important;
+    float: right;
+}
+
+.tools .preview {
+    border: unset !important;
+    border-left: 1px solid #c1c1c1 !important;
+    float: right;
+}
+
+.textAreaWrapper textarea {
+    margin-top: 0;
+    border-radius: 0 0 10px 10px;
+    resize: none;
+}

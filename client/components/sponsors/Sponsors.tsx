@@ -1,10 +1,9 @@
-import { NextPage } from "next";
 import classes from "./Sponsors.module.css";
 import { sponsorLogos } from "../../assets/dummy_data/sponsors";
 import uniqueId from "lodash.uniqueid";
 import Image from "next/image";
 
-const Sponsors:NextPage = () => {
+const Sponsors = () => {
     return (
         <div className={classes.sponsors}>
             {sponsorLogos.map(e => {

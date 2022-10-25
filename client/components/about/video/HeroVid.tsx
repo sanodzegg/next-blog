@@ -1,7 +1,6 @@
-import { NextPage } from "next";
 import classes from "./Video.module.css";
 
-const Video:NextPage = () => {
+const Video = () => {
     return (
         <div className={classes.videoWrapper}>
             <video autoPlay muted loop>

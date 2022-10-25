@@ -15,7 +15,7 @@ export const Layout = (props:any) => {
   const dispatch = useDispatch();
 
   const getUser = async () => {
-    if(isAuth) {
+    if(isAuth && window.location.pathname !== "/user") {
       const user = JSON.parse(isAuth);
       
       const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/${user.id}`, {
@@ -26,8 +26,8 @@ export const Layout = (props:any) => {
       const res = await req.data;
       
       if(req.status === 200) {
-        const { username, email, picture } = res;
-        dispatch(userActions.LogIn({ username, email, picture }))
+        const { username, email, picture, aboutMe } = res;
+        dispatch(userActions.LogIn({ username, email, picture, aboutMe }))
       }
     }
   }

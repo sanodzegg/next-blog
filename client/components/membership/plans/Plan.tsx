@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import classes from "./Plan.module.css";
 
 type props = {
@@ -17,7 +16,7 @@ import CheckedIcon from "../../../assets/icons/check_icon.svg";
 import Image from 'next/image';
 import uniqueId from 'lodash.uniqueid';
 
-const PlanCard: NextPage<propsInt> = ({ data }) => {
+const PlanCard = ({ data }:propsInt) => {
 
     const cardWrapperClass = data.sale ? `${classes.cardWrapper} ${classes.main}` : classes.cardWrapper;
     const price = data.yearly_cost ? data.yearly_cost.toFixed(2) : data.monthly_cost?.toFixed(2);

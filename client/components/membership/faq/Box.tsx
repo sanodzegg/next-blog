@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import classes from "./QuestionWrapper.module.css";
 import ArrowIcon from "../../../assets/icons/faq_icon.svg";
 import Image from "next/image";
@@ -9,7 +8,7 @@ type props = {
     answer: string
 }
 
-const Box:NextPage<props> = ({ question, answer }) => {
+const Box = ({ question, answer }: props) => {
     const [active, setActive] = useState(false);
 
     const boxClass = active ? `${classes.questionBox} ${classes.questionActive}` : `${classes.questionBox} ${classes.questionInactive}`;

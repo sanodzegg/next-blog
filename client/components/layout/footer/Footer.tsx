@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import classes from "./Footer.module.css";
 import Image from "next/image";
 
@@ -9,7 +8,7 @@ import uniqueId from "lodash.uniqueid";
 
 const icons = [twitter, instagram, linkedin];
 
-const Footer:NextPage = () => {
+const Footer = () => {
     return (
         <section className={classes.footerWrapper}>
             <div className={classes.footerHead}>

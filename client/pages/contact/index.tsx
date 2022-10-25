@@ -6,10 +6,10 @@ import classes from "./Contact.module.css";
 const Contact:NextPage = () => {
     const data = useSessionStorage("contactMail");
     let empty;
+
     if(data) {
         empty = JSON.parse(data);
     }
-    
 
     return (
         <div className={classes.contactWrapper}>

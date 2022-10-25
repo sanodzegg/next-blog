@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import classes from "./Team.module.css";
 import data from "../../../assets/dummy_data/about_page.json";
 import uniqueId from "lodash.uniqueid";
@@ -10,8 +9,7 @@ type mapTypes = {
     position: string
 }
 
-const TeamMembers:NextPage = () => {
-
+const TeamMembers = () => {
     return (
         <div className={classes.members}>
             <div className={classes.inner}>

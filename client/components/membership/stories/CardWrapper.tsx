@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import classes from "./CardWrapper.module.css";
 import Image from 'next/image';
 
@@ -9,7 +8,7 @@ type props = {
     image: string
 }
 
-const CardWrapper: NextPage<props> = ({ name, position, review, image }) => {
+const CardWrapper = ({ name, position, review, image }: props) => {
     return (
         <div className={classes.storyCardWrapper}>
             <p>{review}</p>

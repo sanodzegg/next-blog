@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Image from "next/image";
 import classes from "./Team.module.css";
 
@@ -8,7 +7,7 @@ type props = {
     position: string
 }
 
-const Member:NextPage<props> = ({ src, name, position }) => {
+const Member = ({ src, name, position }:props) => {
     
     return (
         <div className={classes.wrapper}>

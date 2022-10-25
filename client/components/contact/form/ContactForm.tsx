@@ -1,5 +1,4 @@
 import axios from "axios";
-import { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 import classes from "./ContactForm.module.css";
 import uniqueId from 'lodash.uniqueid';
@@ -22,7 +21,7 @@ type sessionTypes = {
     message: string
 }
 
-const Form:NextPage<props> = ({ sessionData }) => {
+const Form = ({ sessionData }:props) => {
     const optionWrapperRef = useRef<HTMLDivElement>(null);
     const [selector, setSelector] = useState(false);
 

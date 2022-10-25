@@ -1,5 +1,4 @@
 import uniqueId from "lodash.uniqueid";
-import { NextPage } from "next";
 import classes from "./FAQ.module.css";
 import QuestionWrapper from "./QuestionBox";
 
@@ -12,7 +11,7 @@ type props = {
     questions: questionTypes[]
 }
 
-const FAQ:NextPage<props> = ({ questions }) => {
+const FAQ = ({ questions }:props) => {
     const parted = questions.map((e, i) => {
         if(i % 4 === 0) {
             return questions.slice(i, i + 4);

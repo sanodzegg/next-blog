@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Image from "next/image";
 import classes from "./Wrapper.module.css";
 import moment from "moment";
@@ -11,7 +10,7 @@ type props = {
     description: string
 }
 
-const Blog:NextPage<props> = ({ url, urlToImage, publishedAt, title, description }) => {
+const Blog = ({ url, urlToImage, publishedAt, title, description }:props) => {
     return (
         <div className={classes.blog} onClick={() => url && window.open(url, "_blank")}>
             {urlToImage && <Image src={urlToImage} width={395} height={230} alt={"blog visual"} />}
