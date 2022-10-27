@@ -20,6 +20,9 @@ export const Navbar = () => {
     const user = useSelector((state:RootState) => {
         return (state.user.profile as stateTypes)
     });
+    
+    const isUserAuth = Object.values(user).length > 0;
+    
 
     const UserName = () => {
         return Object.values(user).length > 0 ? <span>{user.username}</span> : <UserLoader />
@@ -38,7 +41,7 @@ export const Navbar = () => {
                     <li><Link href="/membership">membership</Link></li>
                     <li><Link href="/contact">contact</Link></li>
                     <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} alt="search icon" />
-                    <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => user ? router.push(`/${user.username}`) : router.push(`/user`) } alt="login icon" />
+                    <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => isUserAuth ? router.push(`/${user.username}`) : router.push(`/user`) } alt="login icon" />
                     <UserName />
                 </ul>
             </div>

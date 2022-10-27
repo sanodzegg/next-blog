@@ -5,7 +5,21 @@ import classes from "../../../pages/[user]/posts/add/AddPost.module.css";
 
 const outerTags = ["Books", "Clothes", "Coaching", "Ecommerce", "Exercise", "Health", "Holiday", "Marketing", "Tech", "Travel", "University"];
 
-const TagInputs = ({ emitPostData }:any) => {
+
+const TagInputs = ({ localData, emitPostData }:any) => {
+    const parsedLocal = localData && JSON.parse(localData);
+    const [loading, setLoading] = useState(true);
+    
+    useEffect(() => {
+        if(parsedLocal) {
+            setTags(parsedLocal.tags);
+        }
+    }, [localData]);
+
+    useEffect(() => {
+        setLoading(false);
+    }, [parsedLocal]);
+
     const [openState, setOpenState] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
 
@@ -50,7 +64,7 @@ const TagInputs = ({ emitPostData }:any) => {
 
     return (
         <section ref={optionsRef}>
-            <div className={`${classes.selectorWrapper}${tags.length > 0 ? ` ${classes.full}` : ''}${openState ? ` ${classes.open}` : ''}`} onClick={(e) => handleSelectorClick(e.target as HTMLElement)}>
+            <div className={`${classes.selectorWrapper}${tags.length > 0 ? ` ${classes.full}` : ''}${openState ? ` ${classes.open}` : ''}${loading ? ` ${classes.loading}` : ''}`} onClick={(e) => handleSelectorClick(e.target as HTMLElement)}>
                 <span ref={spanRef}>Add tags to your blog (optional)</span>
                 <span className={`${classes.arrow}${openState ? ` ${classes.active}` : ''}`}>^</span>
                 {tags.map(e => {

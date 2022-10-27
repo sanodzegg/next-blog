@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NextPage } from 'next';
 import classes from "./Register.module.css";
 import axios from "axios";

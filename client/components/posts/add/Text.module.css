@@ -59,4 +59,54 @@
     height: 100%;
     padding: 30px;
     background-color: #eeeeee;
+    padding-top: 230px;
+}
+
+.invalid {
+    border: 1px solid #e02b2b !important;
+}
+
+.wrapper h1, .wrapper h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.wrapper h1 {
+    top: 30px;
+    font-size: 56px;
+    line-height: 1.1em;
+    font-weight: 600;
+    color: #000;
+}
+
+.wrapper h3 {
+    top: 115px;
+    font-size: 36px;
+    line-height: 1.1em;
+    font-weight: 600;
+    color: #222222;
+}
+
+.loading {
+    animation: placeHolderShimmer 1.25s forwards infinite linear;
+    background: linear-gradient(to right, #d7d7d7 8%, #e5e5e5 18%, #d7d7d7 33%);
+    background-size: 800px 104px;
+    position: relative;
+
+    height: 55px !important;
+}
+
+.loading * {
+    display: none;
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
 }

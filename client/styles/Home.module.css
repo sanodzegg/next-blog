@@ -20,3 +20,8 @@
   flex-direction: column;
   row-gap: 40px;
 }
+
+.loader {
+  width: 100%;
+  margin: 50px auto;
+}

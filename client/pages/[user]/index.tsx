@@ -14,6 +14,7 @@ import ChangePassword from "../../components/password/ChangePassword";
 import { ColorRing } from "react-loader-spinner";
 import { userActions } from "../../store/slices/user-slice";
 import UserBlogs from "../../components/user/blogs/UserBlogs";
+import { getUserSession } from "../../utils/GetUserSession";
 
 type selector = {
     user: userTypes
@@ -35,7 +36,7 @@ const UserPage:NextPage = () => {
     const user = useSelector((state:selector) => {
         return state.user
     });
-
+    
     const [profileEdited, setProfileEdited] = useState(false);
     const [imgChanged, setImgChanged] = useState(false);
     const [img, setImg] = useState<any>("");
@@ -83,10 +84,6 @@ const UserPage:NextPage = () => {
     }, []);
     
     useEffect(() => {
-        if((user.auth !== null && user.auth === false) || !isAuth) {
-            router.push(`/user/login`);
-        }
-        
         setImg(user.profile.picture);
     }, [user.auth]);
 
@@ -191,4 +188,19 @@ const UserPage:NextPage = () => {
     colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />;
 }
   
-export default UserPage
+
+export async function getServerSideProps({ req }:{ req: any }) {
+    const session = getUserSession(req);
+    if (!session) {
+      return { redirect: {
+        permanent: false,
+        destination: "/login"
+      }, props: {} };
+    }
+    
+    return {
+      props: {},
+    };
+}
+
+export default UserPage;

@@ -4,15 +4,16 @@ import { Flow } from "../flow/Flow";
 import Footer from "./footer/Footer";
 import { Navbar } from "./navbar/Navbar"
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { userActions } from "../../store/slices/user-slice";
+import { useRouter } from "next/router";
 
 export const Layout = (props:any) => {
-
   const isAuth = Cookies.get("user");
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const getUser = async () => {
     if(isAuth && window.location.pathname !== "/user") {
@@ -37,11 +38,11 @@ export const Layout = (props:any) => {
   }, []);
 
   return (
-    <div>
+    <>
         <Flow />
         <Navbar />
         <main>{props.children}</main>
         <Footer />
-    </div>
+    </>
   );
 };

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import { useDispatch } from "react-redux";
-import { userActions } from "../../../store/slices/user-slice";
+import { userActions } from "../../store/slices/user-slice";
 
 const LoginPage: NextPage = () => {
   const [showErrs, setShowErrs] = useState(false);
