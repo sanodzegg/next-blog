@@ -52,12 +52,30 @@
     cursor: pointer;
 }
 
-.blog span {
-    margin: 20px 0;
+.blog .blogImgWrapper {
+    width: 395px;
+    height: 230px;
+}
+
+.blogImgWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.timeStamps {
+    margin: 15px 0;
+}
+
+.timeStamps span {
+    color: #7f7f7f;
     font-size: 12px;
     font-weight: 700;
-    line-height: 1.5em;
-    color: #7f7f7f;
+    text-transform: uppercase;
+}
+
+.timeStamps span:nth-child(2) {
+    margin-left: 15px;
 }
 
 .blog h2 {

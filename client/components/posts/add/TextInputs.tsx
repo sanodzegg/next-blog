@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import TextArea from './TextArea'
 import classes from "./Text.module.css"
 
-const TextInputs = ({ revalidate, localData, show, errors, emitErrors, emitPostData }:any) => {
+const TextInputs = ({ sendClicked, revalidate, localData, show, errors, emitErrors, emitPostData }:any) => {
   const parsedLocal = localData && JSON.parse(localData);
   
   const [title, setTitle] = useState("");
@@ -28,8 +28,8 @@ const TextInputs = ({ revalidate, localData, show, errors, emitErrors, emitPostD
   }, [parsedLocal]);
 
   useEffect(() => {
-    if (title) emitPostData((prev:{ title: string }) => ({...prev, title: title}));
-    if (description) emitPostData((prev:{ description: string }) => ({...prev, description: description}));
+    emitPostData((prev:{ title: string }) => ({...prev, title: title}));
+    emitPostData((prev:{ description: string }) => ({...prev, description: description}));
   }, [title, description]);
   
   const titleRef = useRef<HTMLInputElement>(null);
@@ -57,7 +57,7 @@ const TextInputs = ({ revalidate, localData, show, errors, emitErrors, emitPostD
     <>
         <input className={`${(show && !errors.title) ? classes.invalid : ''} ${loading ? classes.loading : ''}`} ref={titleRef} type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} onBlur={handleTitleBlur} value={title} />
         <input className={`${(show && !errors.description) ? classes.invalid : ''} ${loading ? classes.loading : ''}`} ref={descriptionRef} type="text" placeholder="Description (optional)" onChange={(e) => setDescription(e.target.value)} onBlur={handleDescriptionBlur} value={description} />
-        <TextArea revalidate={revalidate} localData={localData} title={title} description={description} show={show} valid={errors.story} emitValid={emitErrors} emitAreaPost={emitPostData} />
+        <TextArea setClicked={sendClicked} revalidate={revalidate} localData={localData} title={title} description={description} show={show} valid={errors.story} emitValid={emitErrors} emitAreaPost={emitPostData} />
     </>
   )
 }

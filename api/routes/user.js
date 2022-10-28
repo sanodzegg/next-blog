@@ -23,13 +23,13 @@ userRoutes.route("/register").post((req, response) => {
         let errtext;
         result.forEach(e => {
             if(e.username === myobj.username) {
-                errtext = { text: "Username already taken.", code: 0 }
+                errtext = "Username already taken.";
             } else if (e.email === myobj.email) {
-                errtext = { text: "User with this email address already exists.", code: 1 }
+                errtext = "User with this email address already exists.";
             }
         });
         if(errtext) {
-            response.status(409).json(errtext);
+            response.status(409).send(errtext);
         } else {
             db_connect.collection("users").insertOne(myobj, (err, res) => {
               if (err) throw err;
@@ -52,7 +52,7 @@ userRoutes.route("/login").post((req, response) => {
             const decrypted = cryptr.decrypt(user.passphrase);
             const passed = decrypted === password;
             if(!passed) {
-                response.status(400).json({ text: "Password invalid, try again.", code: 1 })
+                response.status(400).send("Password invalid, try again.");
             } else {
                 const { username, email } = user;
                 const token = jwt.sign(
@@ -127,6 +127,20 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
                 });
             }
         }
+    });
+});
+
+userRoutes.route("/featuredUsers").get((req, response) => {
+    let db_connect = dbo.getDb();
+    db_connect.collection("users").find({}).toArray((err, res) => {
+        if(err) throw err;
+        const usersWithBlogs = res.filter(e => e.blogs);
+        const sorted = usersWithBlogs.sort((a, b) => b.blogs - a.blogs);
+        const final = [];
+        sorted.forEach(e => {
+            final.push({ username: e.username, picture: e.picture })
+        })
+        response.status(200).send(final);
     });
 });
 

@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/slices/user-slice";
+import { errorActions } from "../../store/slices/errors-slice";
 
 const LoginPage: NextPage = () => {
   const [showErrs, setShowErrs] = useState(false);
@@ -50,12 +51,18 @@ const LoginPage: NextPage = () => {
     }).length === 2;
 
     if(eligible) {
-      const req = await axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/login`, data);
-      const res = await req.data;
-      
-      if(req.status === 200) {
-        dispatch(userActions.LogIn(res.user));
-        router.push("/");
+      try {
+        const req = await axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/login`, data);
+        const res = await req.data;
+  
+        if(req.status === 200) {
+          dispatch(userActions.LogIn(res.user));
+          router.push("/");
+        }
+      } catch(err:any) {
+        if(err) {
+          dispatch(errorActions.ShowError(err.response.data))
+        };
       }
     }
   }
@@ -63,7 +70,7 @@ const LoginPage: NextPage = () => {
   return (
     <div className={classes.wrapper}>
         <h1>login</h1>
-        <div className={classes.form}>
+        <div className={classes.form} onKeyUp={(e) => e.key === "Enter" && handleLoginClick()}>
             <div className={classes.inputWrapper}>
               <input type="text" placeholder="Username" onChange={(e) => handleLoginUN(e.target.value)} value={data.username} />
               {showErrs && !errors.username.valid && <span>{errors.username.message}</span>}
@@ -74,7 +81,7 @@ const LoginPage: NextPage = () => {
             </div>
           <div className={classes.buttons}>
             <button onClick={handleLoginClick}>login</button>
-            <button className={classes.register} onClick={() => router.push("/user/register")}>register</button>
+            <button className={classes.register} onClick={() => router.push("/register")}>register</button>
           </div>
         </div>
     </div>

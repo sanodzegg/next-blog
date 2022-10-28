@@ -27,7 +27,8 @@ const userSlice = createSlice({
             state.auth = false;
             state.profile = {};
             Cookies.remove("user");
-            // window.location.reload();
+            if(localStorage.getItem("blogCache")) localStorage.removeItem("blogCache");
+            if(sessionStorage.getItem("contactMail")) sessionStorage.removeItem("contactMail");
         }
     }
 });

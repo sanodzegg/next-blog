@@ -6,9 +6,10 @@ import { Navbar } from "./navbar/Navbar"
 
 import { useDispatch } from "react-redux";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { userActions } from "../../store/slices/user-slice";
 import { useRouter } from "next/router";
+import ErrorBar from "./error/Error";
 
 export const Layout = (props:any) => {
   const isAuth = Cookies.get("user");
@@ -39,6 +40,7 @@ export const Layout = (props:any) => {
 
   return (
     <>
+        <ErrorBar />
         <Flow />
         <Navbar />
         <main>{props.children}</main>

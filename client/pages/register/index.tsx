@@ -3,8 +3,11 @@ import { NextPage } from 'next';
 import classes from "./Register.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { errorActions } from "../../store/slices/errors-slice";
 
 const RegisterPage: NextPage = () => {
+  const dispatch = useDispatch();
   const [showErrs, setShowErrs] = useState(false);
   const [errors, setErrors] = useState({
     username: {
@@ -117,10 +120,14 @@ const RegisterPage: NextPage = () => {
     }).length === 4;
     
     if(eligible) {
-      const req = axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/register`, data);
-      const res = await req;
-      if(res.status === 200) {
-        router.push("/user/login");
+      try {
+        const req = axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/register`, data);
+        const res = await req;
+        if(res.status === 200) {
+          router.push("/login");
+        }
+      } catch(err:any) {
+        if(err) dispatch(errorActions.ShowError(err.response.data));
       }
     }
   }
@@ -128,7 +135,7 @@ const RegisterPage: NextPage = () => {
   return (
     <div className={classes.wrapper}>
       <h1>sign up</h1>
-      <div className={classes.form}>
+      <div className={classes.form} onKeyUp={(e) => e.key === "Enter" && handleRegisterClick()}>
         <div className={classes.inputWrapper}>
           <input type="text" placeholder="Username" onChange={(e) => handleUNChange(e.target.value)} value={data.username} />
           {showErrs && !errors.username.valid && <span>{errors.username.message}</span>}
@@ -147,7 +154,7 @@ const RegisterPage: NextPage = () => {
         </div>
       </div>
       <div className={classes.buttons}>
-        <button className={classes.login} onClick={() => router.push("/user/login")}>Login</button>
+        <button className={classes.login} onClick={() => router.push("/login")}>Login</button>
         <button onClick={handleRegisterClick}>Register</button>
       </div>
     </div>

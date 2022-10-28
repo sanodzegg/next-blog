@@ -15,10 +15,9 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     async function getRecords() {
-      // const resp = await axios.get(`https://newsapi.org/v2/everything?domains=css-tricks.com&apiKey=${process.env.NEXT_PUBLIC_ACCESSTOKEN}`);
-      // const data = await resp.data.articles;
-      // setData(data);
-      // setFeaturedPost(data[0]);
+      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/1`);
+      const res = await req.data;
+      setData(res);
     }
   
     getRecords();
@@ -32,7 +31,7 @@ const Home: NextPage = () => {
         <section className={styles.mainFlex}>
           <div className={styles.mainCol}>
             <FeaturedBlog post={featuredPost} />
-            <Blogs blogs={data.slice(1)} />
+            <Blogs blogs={data} />
           </div>
           <aside className={styles.mainCol}>
             <FeaturedAuthors />
