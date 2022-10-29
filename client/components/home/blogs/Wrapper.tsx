@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./Wrapper.module.css";
 
 import Pager from "./Pager";
@@ -6,7 +6,9 @@ import Blog from "./Blog";
 import uniqueId from "lodash.uniqueid";
 
 type props = {
-    blogs: blogsTypes[]
+    currentPage: number,
+    emitPage: any,
+    blogs: blogsTypes[],
 }
 
 type blogsTypes = {
@@ -18,12 +20,14 @@ type blogsTypes = {
     title: string
 }
 
-const Blogs = ({ blogs }:props) => {
+const Blogs = ({ currentPage, emitPage, blogs }:props) => {
     const [page, setPage] = useState(1);
-    
-    console.log(blogs);
-    
+    const [lastPage, setLastPage] = useState(false);
 
+    useEffect(() => {
+        if(blogs.length === 0) setLastPage(true);
+    }, [blogs])
+    
     return (
         <div className={classes.blogsWrapper}>
             {blogs.length > 0 && 
@@ -34,7 +38,7 @@ const Blogs = ({ blogs }:props) => {
                     })}
                 </section>
             }
-            {Object.values(blogs).length > 0 && <Pager current={page} changePage={setPage} />}
+            <Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />
         </div>
     );
 }

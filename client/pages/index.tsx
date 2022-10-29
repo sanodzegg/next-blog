@@ -12,18 +12,21 @@ import FeaturedTags from '../components/home/side/FeaturedTags';
 const Home: NextPage = () => {
   const [featuredPost, setFeaturedPost] = useState({});
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function getRecords() {
-      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/1`);
+      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/${page}`);
       const res = await req.data;
+      console.log(res);
+      
       setData(res);
     }
   
     getRecords();
   
     return;
-  }, []);
+  }, [page]);
 
   return (
     <div className={styles.container}>
@@ -31,7 +34,7 @@ const Home: NextPage = () => {
         <section className={styles.mainFlex}>
           <div className={styles.mainCol}>
             <FeaturedBlog post={featuredPost} />
-            <Blogs blogs={data} />
+            <Blogs currentPage={page} emitPage={setPage} blogs={data} />
           </div>
           <aside className={styles.mainCol}>
             <FeaturedAuthors />
