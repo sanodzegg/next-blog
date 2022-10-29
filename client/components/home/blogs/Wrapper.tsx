@@ -26,16 +26,21 @@ const Blogs = ({ currentPage, emitPage, blogs }:props) => {
 
     useEffect(() => {
         if(blogs.length === 0) setLastPage(true);
+        else setLastPage(false);
     }, [blogs])
     
     return (
         <div className={classes.blogsWrapper}>
-            {blogs.length > 0 && 
+            {blogs.length > 0 ? 
                 <section className={classes.blogWrapperSection}>
                     {blogs.map(e => {
                         return <Blog key={uniqueId()} publishedAt={e.date} description={e.description} readTime={e.readTime} story={e.story}
                         tags={e.tags} title={e.title} />
                     })}
+                </section>
+            :
+                <section>
+                    no blogs found (
                 </section>
             }
             <Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />
