@@ -15,17 +15,26 @@ import Blog from "./blog/Blog";
 import "swiper/css";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+type userTypes = {
+    user: profileTypes
+}
+
+type profileTypes = {
+    profile: { username: string };
+}
+
 type blogTypes = {
     title: string,
     date: string,
     readTime: number,
     description: string
     story: string,
+    _id: string
 }
 
 const UserBlogs = () => {
     const router = useRouter();
-    const username = useSelector((state: any) => state.user.profile.username);
+    const username = useSelector((state: userTypes) => state.user.profile.username);
 
     const cookie = Cookies.get("user");
     const user = cookie && JSON.parse(cookie);
@@ -36,7 +45,7 @@ const UserBlogs = () => {
     useEffect(() => {
         const getBlogs = async () => {
             if(user) {
-                const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/user/${user.id}`);
+                const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/user/${username}`);
                 const res = await req.data;
                 setUserBlogs(res);
                 setReady(true);
@@ -44,7 +53,7 @@ const UserBlogs = () => {
         }
         getBlogs();
     }, []);
-    
+
     const userHasBlogs = userBlogs.length > 0;
 
     if(ready) {
@@ -67,7 +76,7 @@ const UserBlogs = () => {
                     return (
                         <SwiperSlide key={uniqueId()} className={classes.slide}>
                             <Blog title={e.title} date={e.date} readTime={e.readTime}
-                            description={e.description} story={e.story} />
+                            description={e.description} story={e.story} blogID={e._id} />
                         </SwiperSlide>
                     )
                 })}

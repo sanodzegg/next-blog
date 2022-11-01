@@ -4,8 +4,10 @@ import { isValidURL } from '../../../../utils/IsURLValid';
 import classes from "../UserBlogs.module.css";
 
 import defaultImg from "../../../../assets/default.png"
+import { useRouter } from 'next/router';
 
-const Blog = ({ title, date, readTime, description, story }:any) => {
+const Blog = ({ title, date, readTime, description, story, blogID }:any) => {
+    const router = useRouter();
     const matchPic = story.match(/!\[.*?]\((.*?)\)/g);
     const url = matchPic && matchPic[0].match(/\((.*?)\)/g);
     const parsedUrl = url && url[0].replace(/\(|\)/g, "");
@@ -16,7 +18,7 @@ const Blog = ({ title, date, readTime, description, story }:any) => {
     .replaceAll(/!\[.*?]\((.*?)\)/g, "").replaceAll(/\[.*?]\((.*?)\)/g, "").trim();
 
     return (
-        <div className={classes.blogWrapper}>
+        <div className={classes.blogWrapper} onClick={() => router.push(`detailed/${blogID}`)}>
             <div className={classes.imgWrapper}>
                 <img src={urlValid ? parsedUrl : defaultImg.src} alt="blog image" />
             </div>

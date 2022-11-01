@@ -11,12 +11,27 @@ import { RootState } from '../../../../store';
 import { getUserSession } from '../../../../utils/GetUserSession';
 import classes from "./AddPost.module.css";
 
+type selectorTypes = {
+  user: profileTypes
+}
+
+type profileTypes = {
+  profile: storeTypes
+}
+
+type storeTypes = {
+  aboutMe: string,
+  email: string,
+  picture: string,
+  username: string
+}
+
 const AddPost:NextPage = () => {
   const localAsString = useLocalStorage("blogCache");
   const cookie = Cookies.get("user");
   const user = cookie && JSON.parse(cookie);
-  const storeUser:any = useSelector((state:RootState)=> state.user.profile);
-  
+  const storeUser = useSelector((state:selectorTypes)=> state.user.profile);
+
   const router = useRouter();
   
   const [canSend, setCanSend] = useState(false);
@@ -60,7 +75,7 @@ const AddPost:NextPage = () => {
     const words = postData.story.split(" ").length;
     const readTime = words > 200 ? words / 200 : 1;
     
-    const data = { user: user.id, date: currentDate, readTime: Math.floor(readTime), ...postData };
+    const data = { user: storeUser.username, date: currentDate, readTime: Math.floor(readTime), ...postData };
     const responseCode = await sendBlogData(data);
     
     if(responseCode === 200) {
@@ -109,7 +124,7 @@ const AddPost:NextPage = () => {
   )
 }
 
-export async function getServerSideProps({ req }:{ req: any }) {
+export const getServerSideProps = async ({ req }:{req: { cookies: { user: string } }}) => {
   const session = getUserSession(req);
   if (!session) {
     return { redirect: {

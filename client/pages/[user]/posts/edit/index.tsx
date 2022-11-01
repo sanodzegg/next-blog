@@ -7,7 +7,7 @@ const EditPost = () => {
   )
 }
 
-export async function getServerSideProps({ req }:{ req: any }) {
+export const getServerSideProps = async ({ req }:{req: { cookies: { user: string } }}) => {
   const session = getUserSession(req);
   if (!session) {
     return { redirect: {

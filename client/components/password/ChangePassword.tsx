@@ -4,7 +4,7 @@ import React, { useRef, useState } from 'react';
 import { useOnOutsideClick } from '../../hooks/useOutsideClick';
 import classes from "./ChangePassword.module.css";
 
-const ChangePassword = ({ emitPopup }:any) => {
+const ChangePassword = ({ emitPopup }:{ emitPopup: (current: boolean) => void }) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     useOnOutsideClick(wrapperRef, () => emitPopup(false));

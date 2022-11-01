@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     show: false,
-    error: {}
+    error: ""
 }
 
 const errorSlice = createSlice({
@@ -15,7 +15,7 @@ const errorSlice = createSlice({
         },
         HideError(state) {
             state.show = false;
-            state.error = {}
+            state.error = ""
         }
     }
 });

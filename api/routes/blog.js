@@ -8,14 +8,25 @@ const ObjectId = require("mongodb").ObjectId;
 const auth = require("../middlewares/auth");
 
 blogRoutes.route("/blogs").get((req, res) => {
- const db_connect = dbo.getDb("blogs");
+ const db_connect = dbo.getDb();
  db_connect
    .collection("blogs")
    .find({})
    .toArray((err, result) => {
      if (err) throw err;
+     console.log(result.length);
      res.json(result);
    });
+});
+
+blogRoutes.route("/blogsby/:tag").get((req, response) => {
+  const tag = req.params.tag;
+
+  const db = dbo.getDb();
+  db.collection("blogs").find({ tags: { $in: [tag] } }).toArray((err, res) => {
+    if(err) throw err;
+    response.status(200).json(res);
+  });
 });
 
 blogRoutes.route("/blogs/:page").get((req, response) => {
@@ -23,39 +34,40 @@ blogRoutes.route("/blogs/:page").get((req, response) => {
   const db_connect = dbo.getDb();
   db_connect.collection("blogs").find({}).toArray((err, res) => {
     if(err) throw err;
-    const finalIndex = page * 6;
-    const startingIndex = finalIndex - 6;
-    const final = res.slice(startingIndex, finalIndex);
-    response.status(200).json(final);
+    if(res.length !== 0) {
+      const finalIndex = page * 6;
+      const startingIndex = finalIndex - 6;
+      const final = res.slice(startingIndex, finalIndex);
+      if(final.length !== 0) response.status(200).json(final);
+      else response.status(200).send("No blogs in database.");
+    };
   });
 });
 
 blogRoutes.route("/blogs/user/:user").get((req, response) => {
-  const userId = req.params.user;
+  const username = req.params.user;
   
   const db_connect = dbo.getDb("blogs");
-  const query = { user: userId };
+  const query = { author: username };
   db_connect.collection("blogs").find(query).toArray((err, res) => {
     if(err) throw err;
     response.status(200).send(res);
   });
 });
  
-blogRoutes.route("/blog/:id").get((req, res) => {
- let db_connect = dbo.getDb();
- let myquery = { _id: ObjectId(req.params.id) };
- db_connect
-   .collection("blogs")
-   .findOne(myquery, (err, result) => {
-     if (err) throw err;
-     res.json(result);
-   });
+blogRoutes.route("/blog/:id").get((req, response) => {
+  const id = req.params.id;
+  let db = dbo.getDb();
+  db.collection("blogs").find({ _id: ObjectId(id) }).toArray((err, res) => {
+    if(err) throw err;
+    response.status(200).send(res);
+  });
 });
  
 blogRoutes.route("/blog/add").post(auth, (req, response) => {
   const data = req.body;
   const myObj = {
-    user: data.user,
+    author: data.user,
     date: data.date,
     readTime: data.readTime,
     title: data.title,
@@ -70,12 +82,14 @@ blogRoutes.route("/blog/add").post(auth, (req, response) => {
     response.status(200).send("Blog added succesfully.");
   });
 
-  db_connect.collection("blogs").find({ user: data.user }).toArray((err, res) => {
+  db_connect.collection("blogs").find({ author: data.user }).toArray((err, result) => {
     if (err) throw err;
-    const newVals = { $set: { blogs: res.length } };
-    db_connect.collection("users").updateOne({ _id: ObjectId(data.user) }, newVals, (err, res) => {
+    const resultLength = result.length === 0 ? 1 : result.length;
+    const blogs = result.length === 0 ? [myObj] : [...result];
+    const newVals = { $set: { blogsQuantity: resultLength, blogs: blogs } };
+    db_connect.collection("users").updateOne({ username: data.user }, newVals, (err, res) => {
       if(err) throw err;
-      response.status(200);
+      if(res) response.status(200);
     });
   });
 });

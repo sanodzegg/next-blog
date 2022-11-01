@@ -2,13 +2,18 @@ import Box from "./Box";
 import classes from "./QuestionWrapper.module.css";
 
 type props = {
-    data?: object[]
+    data?: mapTypes[]
+}
+
+type mapTypes = {
+    question: string,
+    answer: string
 }
 
 const QuestionWrapper = ({ data }:props) => {
     return (
         <div className={classes.boxWrapper}>
-            {data && data.map((e:any, i:number) => {
+            {data && data.map((e:mapTypes, i:number) => {
                 return (
                     <Box question={e.question} answer={e.answer} key={i} />
                 )

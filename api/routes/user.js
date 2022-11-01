@@ -69,16 +69,26 @@ userRoutes.route("/login").post((req, response) => {
     });
 });
 
-userRoutes.route("/user/:userid").get(auth, (req, resp) => {
-    let db_connect = dbo.getDb();
-
-    let myquery = { _id: ObjectId(req.params.userid) };
-    
-    db_connect.collection("users").find(myquery).toArray((err, result) => {
+userRoutes.route("/user/relog/:userID").get(auth, (req, resp) => {
+    const userID = req.params.userID;
+    let db = dbo.getDb();
+    db.collection("users").find({ _id: ObjectId(userID) }).toArray((err, result) => {
         if(!err || !result.length === 0) {
             const user = result[0];
-            const { _id, username, email, picture, aboutMe } = user;
-            resp.status(200).json({ _id, username, email, picture, aboutMe });
+            const { username, email, picture, aboutMe } = user;
+            resp.status(200).json({ username, email, picture, aboutMe });
+        }
+    })
+})
+
+userRoutes.route("/user/:username").get((req, resp) => {
+    const username = req.params.username;
+    let db = dbo.getDb();
+    db.collection("users").find({ username: username }).toArray((err, result) => {
+        if(!err || !result.length === 0) {
+            const user = result[0];
+            const { username, picture, aboutMe, blogs } = user;
+            resp.status(200).json({ username, picture, aboutMe, blogs });
         }
     });
 });
@@ -131,16 +141,15 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
 });
 
 userRoutes.route("/featuredUsers").get((req, response) => {
-    let db_connect = dbo.getDb();
-    db_connect.collection("users").find({}).toArray((err, res) => {
+    let db = dbo.getDb();
+    db.collection("users").find({ blogsQuantity: { $gt: 0 } }).sort({ blogsQuantity: -1 }).toArray((err, res) => {
         if(err) throw err;
-        const usersWithBlogs = res.filter(e => e.blogs);
-        const sorted = usersWithBlogs.sort((a, b) => b.blogs - a.blogs);
-        const final = [];
-        sorted.forEach(e => {
-            final.push({ username: e.username, picture: e.picture })
-        })
-        response.status(200).send(final);
+        const final = res.map(e => {
+            return {
+                username: e.username, picture: e.picture
+            }
+        });
+        response.status(200).json(final);
     });
 });
 

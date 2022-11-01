@@ -7,7 +7,7 @@ type props = {
   title: string,
   description: string
   textForHtml:string,
-  emitPreview: any
+  emitPreview: (current: boolean) => void
 }
 
 const TextAreaPreview = ({ title, description, textForHtml, emitPreview }:props) => {

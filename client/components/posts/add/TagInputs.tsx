@@ -6,7 +6,12 @@ import classes from "../../../pages/[user]/posts/add/AddPost.module.css";
 const outerTags = ["Books", "Clothes", "Coaching", "Ecommerce", "Exercise", "Health", "Holiday", "Marketing", "Tech", "Travel", "University"];
 
 
-const TagInputs = ({ localData, emitPostData }:any) => {
+type props = {
+    localData: string,
+    emitPostData: (current: any) => void
+}
+
+const TagInputs = ({ localData, emitPostData }:props) => {
     const parsedLocal = localData && JSON.parse(localData);
     const [loading, setLoading] = useState(true);
     
@@ -43,7 +48,7 @@ const TagInputs = ({ localData, emitPostData }:any) => {
             } else spanRef.current.style.display = "inline-block";
         }
         if(inputRef.current) inputRef.current.value = "";
-        emitPostData((prev: any) => ({...prev, tags: tags}));
+        emitPostData((prev: object) => ({...prev, tags: tags}));
     }, [tags]);
 
     const handleRemoveTag = (e:string) => {

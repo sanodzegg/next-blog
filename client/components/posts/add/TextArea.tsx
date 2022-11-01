@@ -3,15 +3,15 @@ import classes from "../../../pages/[user]/posts/add/AddPost.module.css";
 import TextAreaPreview from './TextAreaPreview';
 
 type props = {
-    setClicked: any,
+    setClicked: (current: boolean) => void,
     revalidate: boolean,
     localData: string, 
     title: string,
     description: string,
     show: boolean,
     valid: boolean,
-    emitValid: any,
-    emitAreaPost: any
+    emitValid: (current: object) => void,
+    emitAreaPost: (current: object) => void
 }
 
 const TextArea = ({ setClicked, revalidate, localData, title, description, show, valid, emitValid, emitAreaPost }:props) => {

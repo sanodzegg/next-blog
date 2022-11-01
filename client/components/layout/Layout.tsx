@@ -4,23 +4,26 @@ import { Flow } from "../flow/Flow";
 import Footer from "./footer/Footer";
 import { Navbar } from "./navbar/Navbar"
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { userActions } from "../../store/slices/user-slice";
 import { useRouter } from "next/router";
 import ErrorBar from "./error/Error";
+import { RootState } from "../../store";
+import Search from "../Search/Search";
 
-export const Layout = (props:any) => {
+export const Layout = (props: any) => {
   const isAuth = Cookies.get("user");
   const dispatch = useDispatch();
-  const router = useRouter();
+
+  const searchActive = useSelector((state:RootState) => state.search);
 
   const getUser = async () => {
     if(isAuth && window.location.pathname !== "/user") {
       const user = JSON.parse(isAuth);
       
-      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/${user.id}`, {
+      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/relog/${user.id}`, {
         headers: {
           "Authorization": `Bearer ${user.token}`
         }
@@ -40,6 +43,7 @@ export const Layout = (props:any) => {
 
   return (
     <>
+        {searchActive.show ? <Search /> : null}
         <ErrorBar />
         <Flow />
         <Navbar />

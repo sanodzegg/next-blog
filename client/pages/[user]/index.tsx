@@ -36,7 +36,7 @@ const UserPage:NextPage = () => {
     const user = useSelector((state:selector) => {
         return state.user
     });
-    
+
     const [profileEdited, setProfileEdited] = useState(false);
     const [imgChanged, setImgChanged] = useState(false);
     const [img, setImg] = useState<any>("");
@@ -56,7 +56,7 @@ const UserPage:NextPage = () => {
         if(isAuth) {
             const authParsed = JSON.parse(isAuth);
             
-            const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/${authParsed.id}`, {
+            const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/relog/${authParsed.id}`, {
               headers: {
                 "Authorization": `Bearer ${authParsed.token}`
               }
@@ -187,9 +187,8 @@ const UserPage:NextPage = () => {
     } else return <ColorRing visible={true} height="80" width="80" wrapperClass={classes.loader} 
     colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />;
 }
-  
 
-export async function getServerSideProps({ req }:{ req: any }) {
+export const getServerSideProps = async ({ req }:{req: { cookies: { user: string } }}) => {
     const session = getUserSession(req);
     if (!session) {
       return { redirect: {

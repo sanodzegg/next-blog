@@ -28,7 +28,7 @@ const FeaturedAuthors = () => {
     }, []);
 
     return (
-        <div className={classes.featured}>
+        <div className={`${classes.featured} ${authors.length === 0 ? `${classes.loading}` : ''}`}>
             <span>featured authors</span>
             {authors && authors.map(e => {
                 return (

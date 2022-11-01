@@ -5,7 +5,7 @@ import { errorActions } from '../../../store/slices/errors-slice';
 import classes from "./Error.module.css";
 
 const ErrorBar = () => {
-    const error:any = useSelector((state:RootState) => state.error);
+    const error = useSelector((state:RootState) => state.error);
     const wrapperRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
 

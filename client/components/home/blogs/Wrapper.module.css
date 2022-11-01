@@ -36,7 +36,6 @@
 }
 
 .blogWrapperSection {
-    margin-top: 60px;
     display: grid;
     grid-template-columns: auto auto;
     column-gap: 40px;
@@ -91,4 +90,16 @@
     line-height: 1.5em;
     font-weight: 400;
     color: #000;
+}
+
+.nbErr {
+    font-size: 55px;
+    margin: 0 auto;
+    margin-left: 25px;
+}
+
+.nextBtnDisabled {
+    opacity: .8;
+    pointer-events: none;
+    user-select: none;
 }

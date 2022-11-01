@@ -6,9 +6,10 @@ import LoginIcon from "../../../assets/icons/login.svg";
 
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import UserLoader from "./Loader/UserLoader";
+import { searchActions } from "../../../store/slices/search-slice";
 
 type stateTypes = {
     username: string
@@ -16,7 +17,7 @@ type stateTypes = {
 
 export const Navbar = () => {
     const router = useRouter();
-
+    const dispatch = useDispatch();
     const user = useSelector((state:RootState) => {
         return (state.user.profile as stateTypes)
     });
@@ -40,7 +41,7 @@ export const Navbar = () => {
                     <li><Link href="/about">about</Link></li>
                     <li><Link href="/membership">membership</Link></li>
                     <li><Link href="/contact">contact</Link></li>
-                    <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} alt="search icon" />
+                    <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} alt="search icon" onClick={() => dispatch(searchActions.OpenSearch())} />
                     <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => isUserAuth ? router.push(`/${user.username}`) : router.push(`/user`) } alt="login icon" />
                     <UserName />
                 </ul>
