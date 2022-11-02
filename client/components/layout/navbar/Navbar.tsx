@@ -37,7 +37,6 @@ export const Navbar = () => {
                 </h1>
                 <ul className={classes.list}>
                     <li><Link href="/">home</Link></li>
-                    <li><a href="">categories</a></li>
                     <li><Link href="/about">about</Link></li>
                     <li><Link href="/membership">membership</Link></li>
                     <li><Link href="/contact">contact</Link></li>

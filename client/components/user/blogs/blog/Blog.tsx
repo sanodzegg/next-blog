@@ -14,7 +14,7 @@ const Blog = ({ title, date, readTime, description, story, blogID }:any) => {
 
     const urlValid = isValidURL(parsedUrl);
 
-    const parsedStory = story.replaceAll(/\*\*|\*\*/g, "").replaceAll(/\*|\*/g).replaceAll(/> |/g, "")
+    const parsedStory = story.replaceAll(/\*\*|\*\*/g, "").replaceAll(/\*|\*/g, "").replaceAll(/> |/g, "")
     .replaceAll(/!\[.*?]\((.*?)\)/g, "").replaceAll(/\[.*?]\((.*?)\)/g, "").trim();
 
     return (

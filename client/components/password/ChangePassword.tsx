@@ -89,7 +89,6 @@ const ChangePassword = ({ emitPopup }:{ emitPopup: (current: boolean) => void })
 
     const handleCPClick = async () => {
         setShowErrs(true);
-
         const eligible = Object.values(errors).filter(e => e.valid).length === 3 ? true : false;
         if(eligible && user.token) {
             const req = await axios.post(`${process.env.NEXT_PUBLIC_PROXY_URL}/user/password`, {...data, userid: user.id}, {

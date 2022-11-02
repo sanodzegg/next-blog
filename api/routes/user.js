@@ -140,6 +140,18 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
     });
 });
 
+userRoutes.route("/user/reset").post((req, response) => {
+    const { newPass, username } = req.body;
+    
+    const db = dbo.getDb();
+
+    const newvals = { $set: { passphrase: cryptr.encrypt(newPass) } }
+    db.collection("users").updateOne({ username: username }, newvals, (err, res) => {
+        if(err) throw err;
+        response.status(200).send("Password reset successful.")
+    });
+});
+
 userRoutes.route("/featuredUsers").get((req, response) => {
     let db = dbo.getDb();
     db.collection("users").find({ blogsQuantity: { $gt: 0 } }).sort({ blogsQuantity: -1 }).toArray((err, res) => {

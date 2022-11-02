@@ -3,6 +3,12 @@ const nodemailer = require("nodemailer");
 
 const mailRoutes = express.Router();
 
+const dbo = require("../db/conn");
+
+const path = require("path");
+const fs = require("fs");
+const handlebars = require("handlebars");
+
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -24,5 +30,43 @@ mailRoutes.route("/sendmail").post((req, res) => {
         } else res.status(200).send(info);
     });
 });
+
+mailRoutes.route("/forgot/:username").get((req, response) => {
+    const username = req.params.username;
+
+    const db = dbo.getDb();
+    db.collection("users").find({ username: username }).toArray((err, res) => {
+        if(!err && res.length > 0) {
+            const { username, email } = res[0];
+            response.status(200).json({ email: email });
+
+            const newPath = path.join(__dirname + "/../assets/resetDesign.html");
+
+            fs.readFile(newPath, { encoding: "utf-8" }, (err, html) => {
+                if(err) throw err;
+
+                const template = handlebars.compile(html);
+                const replacements = {
+                    username: username
+                }
+
+                const htmlToSend = template(replacements);
+
+                const mailOptions = {
+                    from: process.env.EMAIL,
+                    to: email,
+                    subject: "Reset your account password",
+                    html: htmlToSend
+                }
+
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if(error) throw error;
+                    res.status(200).send(info)
+                })
+            });
+
+        } else throw err;
+    });
+})
 
 module.exports = mailRoutes;

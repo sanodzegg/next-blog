@@ -6,9 +6,8 @@ import { Navbar } from "./navbar/Navbar"
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { userActions } from "../../store/slices/user-slice";
-import { useRouter } from "next/router";
 import ErrorBar from "./error/Error";
 import { RootState } from "../../store";
 import Search from "../Search/Search";

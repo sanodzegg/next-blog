@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from 'next';
 
 import classes from "./Login.module.css";
@@ -8,9 +8,11 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/slices/user-slice";
 import { errorActions } from "../../store/slices/errors-slice";
+import ForgotPassword from "../../components/password/ForgotPassword";
 
 const LoginPage: NextPage = () => {
   const [showErrs, setShowErrs] = useState(false);
+  const [forgot, setForgot] = useState(false);
   const [data, setData] = useState({
     username: "",
     password: ""
@@ -66,9 +68,10 @@ const LoginPage: NextPage = () => {
       }
     }
   }
-
+  
   return (
     <div className={classes.wrapper}>
+        {forgot && <ForgotPassword emitForgot={setForgot} />}
         <h1>login</h1>
         <div className={classes.form} onKeyUp={(e) => e.key === "Enter" && handleLoginClick()}>
             <div className={classes.inputWrapper}>
@@ -77,6 +80,7 @@ const LoginPage: NextPage = () => {
             </div>
             <div className={classes.inputWrapper}>
               <input type="password" placeholder="Password" onChange={(e) => handleLoginPass(e.target.value)} value={data.password} />
+              <span className={classes.forgotPass} onClick={() => setForgot(true)}>Forgot?</span>
               {showErrs && !errors.password.valid && <span>{errors.password.message}</span>}
             </div>
           <div className={classes.buttons}>

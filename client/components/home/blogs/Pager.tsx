@@ -7,8 +7,6 @@ type props = {
 }
 
 const Pager = ({ current, changePage, lastPage }:props) => {
-    console.log(lastPage);
-    
     return (
         <div className={classes.pager}>
             <span>{current}</span>

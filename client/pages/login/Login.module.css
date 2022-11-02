@@ -18,6 +18,20 @@
     margin: 0 auto;
 }
 
+.inputWrapper {
+    position: relative;
+}
+
+.inputWrapper .forgotPass {
+    cursor: pointer;
+    position: absolute;
+    font-size: 14px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b2ff66 !important;
+}
+
 .inputWrapper input {
     width: 100%;
     background-color: transparent;

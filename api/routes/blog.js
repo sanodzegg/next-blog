@@ -25,7 +25,9 @@ blogRoutes.route("/blogsby/:tag").get((req, response) => {
   const db = dbo.getDb();
   db.collection("blogs").find({ tags: { $in: [tag] } }).toArray((err, res) => {
     if(err) throw err;
-    response.status(200).json(res);
+    if(res.length === 0) {
+      response.status(200).send("No blogs found.");
+    } else response.status(200).json(res);
   });
 });
 
@@ -60,6 +62,9 @@ blogRoutes.route("/blog/:id").get((req, response) => {
   let db = dbo.getDb();
   db.collection("blogs").find({ _id: ObjectId(id) }).toArray((err, res) => {
     if(err) throw err;
+    const views = res[0].views ? res[0].views : 0;
+    const newvals = { $set: { views: (views + 1) } };
+    db.collection("blogs").updateOne({ _id: ObjectId(id) }, newvals);
     response.status(200).send(res);
   });
 });
@@ -120,5 +125,13 @@ blogRoutes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
+
+blogRoutes.route("/featuredBlog").get((req, res) => {
+  const db = dbo.getDb();
+  db.collection("blogs").find({}).sort({ views: -1 }).limit(1).toArray((err, result) => {
+    if(err) throw err;
+    res.status(200).json(result);
+  })
+})
  
 module.exports = blogRoutes;

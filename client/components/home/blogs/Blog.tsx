@@ -22,6 +22,9 @@ const Blog = ({ publishedAt, description, readTime, story, title, blogID }:props
     
     const urlValid = parsedUrl && isValidURL(parsedUrl);
 
+    const parsedStory = story.replaceAll(/\*\*|\*\*/g, "").replaceAll(/\*|\*/g, "").replaceAll(/> |/g, "")
+    .replaceAll(/!\[.*?]\((.*?)\)/g, "").replaceAll(/\[.*?]\((.*?)\)/g, "").trim();
+    
     return (
         <div className={classes.blog} onClick={() => router.push(`/detailed/${blogID}`)}>
             {<div className={classes.blogImgWrapper}><img src={urlValid ? parsedUrl : defaultAvatar.src} alt={"blog visual"} /></div>}
@@ -30,7 +33,7 @@ const Blog = ({ publishedAt, description, readTime, story, title, blogID }:props
                 <span>{`${readTime} min read`}</span>
             </div>
             <h2>{title.length > 45 ? `${title.slice(0, 45)}...` : title}</h2>
-            {description ? <p>{description.length > 100 ? `${description.slice(0, 100)}...` : description}</p> : <p>{`${story.slice(0, 100)}...`}</p>}
+            {description ? <p>{description.length > 100 ? `${description.slice(0, 100)}...` : description}</p> : <p>{`${parsedStory.slice(0, 100)}...`}</p>}
         </div>
     );
 }

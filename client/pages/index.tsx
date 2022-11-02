@@ -15,15 +15,20 @@ const Home: NextPage = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    async function getRecords() {
+    const getRecords = async () => {
       const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/blogs/${page}`);
       const res = await req.data;
       setData(res);
     }
-  
     getRecords();
   
-    return;
+    const getFeaturedBlog = async () => {
+      const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/featuredBlog`);
+      const res = await req.data;
+      setFeaturedPost(res[0]);
+    }
+
+    getFeaturedBlog();
   }, [page]);
 
   return (
@@ -31,7 +36,7 @@ const Home: NextPage = () => {
         <Hero />
         <section className={styles.mainFlex}>
           <div className={styles.mainCol}>
-            <FeaturedBlog post={featuredPost} />
+            {page < 2 && <FeaturedBlog post={featuredPost} />}
             <Blogs currentPage={page} emitPage={setPage} blogs={data} />
           </div>
           <aside className={styles.mainCol}>

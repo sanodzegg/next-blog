@@ -1,0 +1,57 @@
+.wrapper {
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+    text-align: center;
+}
+
+.wrapper * {
+    display: block;
+}
+
+.wrapper span {
+    text-align: start;
+    display: block;
+    margin: 5px 0;
+    margin-left: 10px;
+}
+
+.wrapper input {
+    width: 100%;
+    background-color: transparent;
+    color: #000;
+    border-radius: 5px;
+    padding: 15px 20px;
+    border: 1px solid #00000033;
+    font-size: 15px;
+    margin: 7.5px 0;
+    outline: none;
+}
+
+.wrapper button {
+    background-color: #a9a9a969;
+    padding: 15px 35px;
+    border-radius: 10px;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    outline: unset;
+    border: unset;
+    cursor: pointer;
+    transition: background-color .3s ease-in-out;
+    user-select: none;
+    pointer-events: none;
+    margin: 20px auto 0 auto;
+}
+
+.wrapper button.eligible {
+    pointer-events: all;
+    background-color: #c1ff84;
+}
+
+.wrapper button.eligible:hover {
+    background-color: #b2ff66;
+}
