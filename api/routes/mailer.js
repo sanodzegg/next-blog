@@ -9,6 +9,9 @@ const path = require("path");
 const fs = require("fs");
 const handlebars = require("handlebars");
 
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr(process.env.ENCRYPT);
+
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -33,11 +36,14 @@ mailRoutes.route("/sendmail").post((req, res) => {
 
 mailRoutes.route("/forgot/:username").get((req, response) => {
     const username = req.params.username;
-
+    
     const db = dbo.getDb();
+
     db.collection("users").find({ username: username }).toArray((err, res) => {
         if(!err && res.length > 0) {
             const { username, email } = res[0];
+            const hash = cryptr.encrypt(username);
+            response.cookie('resetAuth', hash, { maxAge: 500000000, httpOnly: true, secure: true });
             response.status(200).json({ email: email });
 
             const newPath = path.join(__dirname + "/../assets/resetDesign.html");
@@ -47,7 +53,7 @@ mailRoutes.route("/forgot/:username").get((req, response) => {
 
                 const template = handlebars.compile(html);
                 const replacements = {
-                    username: username
+                    username: username,
                 }
 
                 const htmlToSend = template(replacements);
@@ -64,7 +70,6 @@ mailRoutes.route("/forgot/:username").get((req, response) => {
                     res.status(200).send(info)
                 })
             });
-
         } else throw err;
     });
 })

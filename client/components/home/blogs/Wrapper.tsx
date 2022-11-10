@@ -30,9 +30,11 @@ const Blogs = ({ currentPage, emitPage, blogs }:props) => {
         else setLastPage(false);
     }, [blogs])
 
+    const blogsExist = typeof blogs !== "string" && blogs.length > 0;
+
     return (
         <div className={classes.blogsWrapper}>
-            {typeof blogs !== "string" && blogs.length > 0 ? 
+            {blogsExist ? 
                 <section className={classes.blogWrapperSection}>
                     {blogs.map(e => {
                         return <Blog key={uniqueId()} publishedAt={e.date} description={e.description} readTime={e.readTime} story={e.story}
@@ -43,7 +45,7 @@ const Blogs = ({ currentPage, emitPage, blogs }:props) => {
             : <ColorRing visible={true} height="80" width="80" wrapperClass={classes.loader} 
                     colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />
             }
-            {<Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />}
+            {blogsExist && <Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />}
         </div>
     );
 }

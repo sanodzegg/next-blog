@@ -1,6 +1,11 @@
+NEXT_PUBLIC_ACCESSTOKEN=pub_12355e95f638a4f43ea188642c2913ef0ba76
+NEXT_PUBLIC_PROXY_URL=http://localhost:5000
+.env.local
+
 PORT=5000
 ATLAS_URI=mongodb+srv://admin:555Gio555@blogs.rm3oksi.mongodb.net/?retryWrites=true&w=majority
 EMAIL=bvsrvice@gmail.com
 PASS=akzseulehykxhcax
 TOKEN_KEY=shotarustaveli
 ENCRYPT=vepkhistkaosani
+config.env

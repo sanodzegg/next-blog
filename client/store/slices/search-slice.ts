@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     show: false,
-    term: ""
+    term: "",
+    searched: []
 }
 
 const searchSlice = createSlice({
@@ -17,6 +18,9 @@ const searchSlice = createSlice({
         },
         SearchTerm(state, payload) {
             state.term = payload.payload;
+        },
+        setSearched(state, payload) {
+            state.searched = payload.payload
         }
     }
 });

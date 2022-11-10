@@ -5,20 +5,20 @@ const auth = require("../middlewares/auth");
 const jwt = require("jsonwebtoken");
 const dbo = require("../db/conn");
 const Cryptr = require('cryptr');
-const cryptr = new Cryptr('vepkhistkaosani');
+const cryptr = new Cryptr(process.env.ENCRYPT);
 
 const ObjectId = require("mongodb").ObjectId;
 
 userRoutes.route("/register").post((req, response) => {
     const { username, email, password } = req.body;
 
-    let db_connect = dbo.getDb();
+    let db = dbo.getDb();
 
     const passphrase = cryptr.encrypt(password);
     
     let myobj = { username, email, passphrase, picture: null, aboutMe: null };
 
-    db_connect.collection("users").find({}).toArray((err, result) => {
+    db.collection("users").find({}).toArray((err, result) => {
         if(err) throw err;
         let errtext;
         result.forEach(e => {
@@ -31,7 +31,7 @@ userRoutes.route("/register").post((req, response) => {
         if(errtext) {
             response.status(409).send(errtext);
         } else {
-            db_connect.collection("users").insertOne(myobj, (err, res) => {
+            db.collection("users").insertOne(myobj, (err, res) => {
               if (err) throw err;
               response.json(res);
             });
@@ -42,9 +42,9 @@ userRoutes.route("/register").post((req, response) => {
 userRoutes.route("/login").post((req, response) => {
     const { username, password } = req.body;
 
-    let db_connect = dbo.getDb();
+    let db = dbo.getDb();
 
-    db_connect.collection("users").find({ username: username }).toArray((err, result) => {
+    db.collection("users").find({ username: username }).toArray((err, result) => {
         if(err || result.length === 0) { 
             response.status(400).send("User doesn't exist.");
         } else {
@@ -96,16 +96,16 @@ userRoutes.route("/user/:username").get((req, resp) => {
 userRoutes.route("/user/update").post(auth, (req, response) => {
     const { img, originalImage, username, originalUser, aboutMe } = req.body;
 
-    let db_connect = dbo.getDb();
+    let db = dbo.getDb();
 
     const newvals = { $set: { picture: img ? img : originalImage, username: username ? username : originalUser, aboutMe: aboutMe ? aboutMe : null } };
 
-    db_connect.collection("users").find({username: username}).toArray((err, result) => {
+    db.collection("users").find({username: username}).toArray((err, result) => {
         if(result.length > 0) {
             response.status(409).send("Username already exists.");
             return;
         } else {
-            db_connect.collection("users").updateOne({username: originalUser}, newvals, (err, res) => {
+            db.collection("users").updateOne({username: originalUser}, newvals, (err, res) => {
                 if(err) throw err;
                 response.status(200).send("Profile edit successful.");
             });
@@ -116,7 +116,7 @@ userRoutes.route("/user/update").post(auth, (req, response) => {
 userRoutes.route("/user/password").post(auth, (req, response) => {
     const { oldPass, newPass, userid } = req.body;
     
-    let db_connect = dbo.getDb();
+    let db = dbo.getDb();
 
     if(oldPass === newPass) {
         response.status(401).send("New password can not be the same as old password.");
@@ -124,14 +124,14 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
     }
 
     let myquery = { _id: ObjectId(userid) };
-    db_connect.collection("users").find(myquery).toArray((err, result) => {
+    db.collection("users").find(myquery).toArray((err, result) => {
         if(!err || !result.length === 0) {
             const userpass = result[0].passphrase;
             const decrypted = cryptr.decrypt(userpass);
             const passed = oldPass === decrypted;
             if(passed) {
                 const newvals = { $set: { passphrase: cryptr.encrypt(newPass) } }
-                db_connect.collection("users").updateOne({_id: ObjectId(userid)}, newvals, (err, res) => {
+                db.collection("users").updateOne({_id: ObjectId(userid)}, newvals, (err, res) => {
                     if(err) throw err;
                     response.status(200).send("Password updated successfully.");
                 });
@@ -141,15 +141,25 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
 });
 
 userRoutes.route("/user/reset").post((req, response) => {
-    const { newPass, username } = req.body;
+    const { newPass, username, cookie } = req.body;
     
-    const db = dbo.getDb();
+    let db = dbo.getDb();
 
-    const newvals = { $set: { passphrase: cryptr.encrypt(newPass) } }
-    db.collection("users").updateOne({ username: username }, newvals, (err, res) => {
-        if(err) throw err;
-        response.status(200).send("Password reset successful.")
-    });
+    if(!cookie) {
+        response.status(401);
+    }
+
+    if(cookie) {
+        console.log(cryptr.decrypt(cookie));
+    }
+
+    if(newPass && username) {
+        const newvals = { $set: { passphrase: cryptr.encrypt(newPass) } }
+        db.collection("users").updateOne({ username: username }, newvals, (err, res) => {
+            if(err) throw err;
+            response.status(200).send("Password reset successful.")
+        });
+    }
 });
 
 userRoutes.route("/featuredUsers").get((req, response) => {
@@ -164,5 +174,43 @@ userRoutes.route("/featuredUsers").get((req, response) => {
         response.status(200).json(final);
     });
 });
+
+userRoutes.route("/search/:term").get((req, response) => {
+    const term = req.params.term;
+    let db = dbo.getDb();
+    const usersQuery = { $or: [
+        { username: { $regex: term } },
+        { description: { $regex: term } }
+    ] }
+    const blogsQuery = { $or: [
+        { author: { $regex: term } },
+        { title: { $regex: term } },
+        { description: { $regex: term } },
+        { story: { $regex: term } }
+    ] }
+
+    const finalData = {
+        users: [],
+        blogs: []
+    };
+
+    const nfText = "No results found."
+
+    db.collection("blogs").find(blogsQuery).toArray((err, res) => {
+        if(err) throw err;
+        finalData.blogs = res;
+        db.collection("users").find(usersQuery).toArray((err, res) => {
+            if(err) throw err;
+            const resTransformed = res.map(e => {
+                return { username: e.username, picture: e.picture }
+            });
+            finalData.users = resTransformed;
+
+            if(finalData.users.length === 0 && finalData.blogs.length === 0) {
+                response.send(nfText);
+            } else response.status(200).send(finalData);
+        });
+    });
+})
 
 module.exports = userRoutes;

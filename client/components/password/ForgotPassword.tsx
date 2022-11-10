@@ -18,7 +18,9 @@ const ForgotPassword = ({ emitForgot }:any) => {
 
     const handleOKClick = async () => {
         if(userName) {
-            const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/forgot/${userName}`);
+            const req = await axios.get(`${process.env.NEXT_PUBLIC_PROXY_URL}/forgot/${userName}`, {
+                withCredentials: true,
+            });
             const res = await req.data;
             setUserMail(res.email);
         }

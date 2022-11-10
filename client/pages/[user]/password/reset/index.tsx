@@ -2,7 +2,22 @@ import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react';
 import { ColorRing } from 'react-loader-spinner';
+import { ResetHandler } from '../../../../utils/ResetHandler';
 import classes from "./ResetPass.module.css";
+
+export const getServerSideProps = async ({ req }:{req: { headers: { cookie: string } }}) => {
+  const session = ResetHandler(req);
+  // if (!session) {
+  //   return { redirect: {
+  //     permanent: false,
+  //     destination: "/login"
+  //   }, props: {} };
+  // }
+  
+  return {
+    props: {},
+  };
+}
 
 const Reset = () => {
   const repPass = useRef<HTMLInputElement>(null);
