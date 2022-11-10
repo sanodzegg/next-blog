@@ -24,10 +24,14 @@ const Blog = ({ publishedAt, description, readTime, story, title, blogID }:props
 
     const parsedStory = story.replaceAll(/\*\*|\*\*/g, "").replaceAll(/\*|\*/g, "").replaceAll(/> |/g, "")
     .replaceAll(/!\[.*?]\((.*?)\)/g, "").replaceAll(/\[.*?]\((.*?)\)/g, "").trim();
+
+    const handleImgError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        event.currentTarget.src = defaultAvatar.src;
+    }
     
     return (
         <div className={classes.blog} onClick={() => router.push(`/detailed/${blogID}`)}>
-            {<div className={classes.blogImgWrapper}><img src={urlValid ? parsedUrl : defaultAvatar.src} alt={"blog visual"} /></div>}
+            {<div className={classes.blogImgWrapper}><img onError={handleImgError} src={urlValid ? parsedUrl : defaultAvatar.src} alt={"blog visual"} /></div>}
             <div className={classes.timeStamps}>
                 <span>{moment(publishedAt).format("MMM D")}</span>
                 <span>{`${readTime} min read`}</span>

@@ -42,11 +42,15 @@ const FeaturedBlog = ({ post }:props) => {
     }
   }, [parsedUrl]);
 
+  const handleImgError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.src = defaultImg.src;
+  }
+
   if(Object.values(post).length > 0) {
     return (
       <div className={classes.featuredWrapper} onClick={() => router.push(`/detailed/${post._id}`)}>
         <div className={classes.imgWrapper}>
-          <img src={urlValid ? parsedUrl : defaultImg.src} alt="blog image" />
+          <img onError={handleImgError} src={urlValid ? parsedUrl : defaultImg.src} alt="blog image" />
         </div>
         <div className={classes.featuredText}>
           <span>{moment(post.date).format("LL")}</span>

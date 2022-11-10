@@ -5,6 +5,7 @@ const auth = require("../middlewares/auth");
 const jwt = require("jsonwebtoken");
 const dbo = require("../db/conn");
 const Cryptr = require('cryptr');
+const verifyCookie = require("../middlewares/reset");
 const cryptr = new Cryptr(process.env.ENCRYPT);
 
 const ObjectId = require("mongodb").ObjectId;
@@ -140,17 +141,23 @@ userRoutes.route("/user/password").post(auth, (req, response) => {
     });
 });
 
-userRoutes.route("/user/reset").post((req, response) => {
+userRoutes.route("/user/reset").post(async (req, response) => {
     const { newPass, username, cookie } = req.body;
-    
+    const userCookie = req.body['$user'];
     let db = dbo.getDb();
 
-    if(!cookie) {
+    if(!cookie || !userCookie) {
         response.status(401);
     }
 
-    if(cookie) {
-        console.log(cryptr.decrypt(cookie));
+    if(cookie && userCookie) {
+        try {
+            const checkedCookie = await verifyCookie(userCookie, cookie);
+            if(checkedCookie) response.status(200).send("Success.");
+            else response.status(400).send("Cookie error.");
+        } catch (err) {
+            if(err) response.status(403).send("Error occured.");
+        }
     }
 
     if(newPass && username) {

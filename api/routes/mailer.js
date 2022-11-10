@@ -43,7 +43,8 @@ mailRoutes.route("/forgot/:username").get((req, response) => {
         if(!err && res.length > 0) {
             const { username, email } = res[0];
             const hash = cryptr.encrypt(username);
-            response.cookie('resetAuth', hash, { maxAge: 500000000, httpOnly: true, secure: true });
+            response.cookie('resetAuth', hash, { maxAge: 300000, httpOnly: true, secure: true });
+            response.cookie('user', username, { maxAge: 300000, httpOnly: true, secure: true });
             response.status(200).json({ email: email });
 
             const newPath = path.join(__dirname + "/../assets/resetDesign.html");
