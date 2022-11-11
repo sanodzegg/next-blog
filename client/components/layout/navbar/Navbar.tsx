@@ -33,7 +33,7 @@ export const Navbar = () => {
         <nav className={classes.navbar}>
             <div className={classes.navbarInner}>
                 <h1 onClick={() => { window.scrollTo(0, 0); router.push("/") }} className={classes.logo}>
-                    BLOGSVILLE
+                    BLOGSCOM
                 </h1>
                 <ul className={classes.list}>
                     <li><Link href="/">home</Link></li>

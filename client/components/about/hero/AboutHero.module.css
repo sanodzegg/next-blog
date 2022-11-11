@@ -10,6 +10,15 @@
     line-height: 1.1em;
 }
 
+@media screen and (max-width: 1175px) {
+    .mainHeroWrapper {
+        padding: 11.064vw 20px;
+    }
+    .mainHeroWrapper h3 {
+        font-size: 4.596vw;
+    }
+}
+
 .mainContainer {
     margin-top: 80px;
     width: 100%;

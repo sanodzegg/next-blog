@@ -1,0 +1,6 @@
+.blogResultsWrapper {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 20px 0;
+    row-gap: 20px;
+}

@@ -31,9 +31,9 @@ const Blogs = ({ currentPage, emitPage, blogs }:props) => {
     }, [blogs])
 
     const blogsExist = typeof blogs !== "string" && blogs.length > 0;
-
+    
     return (
-        <div className={classes.blogsWrapper}>
+        <div className={`${typeof blogs === "string" ? `${classes.nblwd}` : ''}`}>
             {blogsExist ? 
                 <section className={classes.blogWrapperSection}>
                     {blogs.map(e => {
@@ -45,7 +45,7 @@ const Blogs = ({ currentPage, emitPage, blogs }:props) => {
             : <ColorRing visible={true} height="80" width="80" wrapperClass={classes.loader} 
                     colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />
             }
-            {blogsExist && <Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />}
+            {(blogsExist || typeof blogs === "string") && <Pager current={currentPage} changePage={emitPage} lastPage={lastPage} />}
         </div>
     );
 }

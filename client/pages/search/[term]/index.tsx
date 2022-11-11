@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { ColorRing } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux'
+import BlogResults from '../../../components/Search/searchPosts/BlogResults';
+import UserResults from '../../../components/Search/searchUsers/UserResults';
 import { searchActions } from '../../../store/slices/search-slice';
 
 import classes from "./SearchTerm.module.css";
@@ -17,8 +19,22 @@ type searchType = {
 
 type datatypes = {
     length: number,
-    users: object[],
+    users: tUsers[],
     blogs: object[],
+}
+
+type tUsers = {
+    picture: string,
+    username: string
+}
+
+type tBlogs = {
+    date?: string,
+    description?: string,
+    readTime?: number,
+    story?: string,
+    title?: string,
+    _id?: string
 }
 
 const Search = () => {
@@ -26,8 +42,8 @@ const Search = () => {
     const { term } = router.query;
     const dispatch = useDispatch();
 
-    const [userData, setUserData] = useState<object[]>([]);
-    const [blogData, setBlogData] = useState<object[]>([]);
+    const [userData, setUserData] = useState<tUsers[]>([]);
+    const [blogData, setBlogData] = useState<any>([]);
     const searchData:datatypes = useSelector((state:stateType) => state.search.searched);
 
     useEffect(() => {
@@ -48,7 +64,18 @@ const Search = () => {
 
     if(searchData.length !== 0 && typeof searchData !== "string") {
         return (
-            <div>index</div>
+            <section className={classes.searchResultsWrapper}>
+                    {userData.length > 0 && 
+                    <>
+                        <h1>Users</h1>
+                        <UserResults data={userData} />
+                    </>}
+                    {blogData.length > 0 &&
+                    <>
+                        <h1>Blogs</h1>
+                        <BlogResults data={blogData} />
+                    </>}
+            </section>
         )
     } else if (typeof searchData === "string") {
         return (

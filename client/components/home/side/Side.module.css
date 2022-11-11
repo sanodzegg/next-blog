@@ -95,3 +95,34 @@
         background-position: 468px 0
     }
 }
+
+@media screen and (max-width: 1320px) {
+    .tags span, .featured span {
+        text-align: center;
+        display: block;
+        margin: 10px 0;
+    }
+
+    .tags {
+        padding: 10px;
+        order: 1;
+        max-width: unset;
+    }
+
+    .featured {
+        padding: 25px;
+        order: 2;
+        max-width: unset;
+    }
+
+    .featured span {
+        margin-top: 0;
+    }
+
+    .featuredGrid {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: center;
+        column-gap: 100px;
+    }
+}

@@ -3,6 +3,12 @@
     height: 500px;
 }
 
+@media screen and (max-width: 1175px) {
+    .videoWrapper {
+        height: 42.553vw;
+    }
+}
+
 .videoWrapper video {
     width: 100%;
     height: 100%;

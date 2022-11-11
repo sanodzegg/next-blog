@@ -26,3 +26,25 @@
   width: 100%;
   margin: 50px auto;
 }
+
+@media screen and (max-width: 1320px) {
+  .mainFlex {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mainCol {
+    padding: 0 20px;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 1220px) {
+  .mainFlex {
+    margin-top: 8.197vw;
+  }
+}
