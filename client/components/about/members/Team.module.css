@@ -53,3 +53,13 @@
 .wrapper:nth-child(n+5) {
     margin-top: 80px;
 }
+
+@media screen and (max-width: 1175px) {
+    .members {
+        display: none;
+    }
+
+    .flexbox {
+        display: none;
+    }
+}

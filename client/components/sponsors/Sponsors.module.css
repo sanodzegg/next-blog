@@ -7,3 +7,8 @@
     align-items: center;
     column-gap: 40px;
 }
+
+.sponsors {
+    padding: 4.681vw 20px;
+    column-gap: 3.404vw;
+}

@@ -10,14 +10,6 @@
     line-height: 1.1em;
 }
 
-@media screen and (max-width: 1175px) {
-    .mainHeroWrapper {
-        padding: 11.064vw 20px;
-    }
-    .mainHeroWrapper h3 {
-        font-size: 4.596vw;
-    }
-}
 
 .mainContainer {
     margin-top: 80px;
@@ -78,4 +70,39 @@
     font-size: 16px;
     line-height: 1.5em;
     font-weight: 400;
+}
+
+@media screen and (max-width: 1175px) {
+    .mainHeroWrapper {
+        padding: 11.064vw 20px;
+    }
+
+    .mainHeroWrapper h3 {
+        font-size: 4.596vw;
+    }
+    
+    .mainContainer {
+        margin-top: 6.809vw;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2.5vw;
+    }
+
+    .secondaryHeroWrapper {
+        padding: 11.064vw 0;
+    }
+
+    .inner {
+        flex-direction: column;
+        padding: 0 20px;
+        row-gap: 3.5vw;
+    }
+
+    .story h3 {
+        font-size: 3vw;
+    }
+
+    .story p {
+        font-size: 2vw;
+    }
 }

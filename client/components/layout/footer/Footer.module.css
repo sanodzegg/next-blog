@@ -131,3 +131,26 @@
 .footerCol {
     width: 25%;
 }
+
+@media screen and (max-width: 1175px) {
+    .footerWrapper {
+        padding-top: 11.064vw;
+    }
+
+    .footerHead h1 {
+        font-size: 6.809vw;
+        margin-top: 2.553vw;
+        margin-bottom: 4.5vw;
+    }
+
+}
+
+@media screen and (max-width: 380px) {
+    .footerHead h4 {
+        font-size: 4.211vw;
+    }
+
+    .footerHead button {
+        padding: 5vw;
+    }
+}
