@@ -60,7 +60,7 @@ const BlogWrapper = ({ author, title, description, date, readTime, story, tags }
       </div>
     )
   } else return <ColorRing visible={true} height="80" width="80" wrapperClass={classes.loader} 
-  colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />
+  colors={['#a166ff', '#a166ff', '#a166ff', '#a166ff', '#a166ff']} />
 }
 
 export default BlogWrapper

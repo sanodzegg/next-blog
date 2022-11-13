@@ -49,9 +49,9 @@
 
 .wrapper button.eligible {
     pointer-events: all;
-    background-color: #c1ff84;
+    background-color: #ab84ff;
 }
 
 .wrapper button.eligible:hover {
-    background-color: #b2ff66;
+    background-color: #a166ff;
 }

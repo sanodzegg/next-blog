@@ -10,7 +10,7 @@
     position: absolute;
     top: 25px;
     right: 25px;
-    background-color: #c1ff84;
+    background-color: #ab84ff;
     color: #000;
     font-weight: 700;
     font-size: 12px;
@@ -69,7 +69,7 @@
 }
 
 .cardWrapper button {
-    background-color: #c1ff84;
+    background-color: #ab84ff;
     color: #000;
     font-size: 14px;
     font-weight: 700;
@@ -85,7 +85,7 @@
 }
 
 .cardWrapper button:hover {
-    background-color: #b2ff66;
+    background-color: #a166ff;
 }
 
 .main {

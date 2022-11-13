@@ -59,7 +59,7 @@
     transform: translateY(-50%);
     padding: 13px 16px;
     border-radius: 8px;
-    background-color: #c1ff84;
+    background-color: #ab84ff;
     transition: background-color .4s ease-in-out;
     color: #000;
     font-size: 12px;
@@ -72,5 +72,5 @@
 }
 
 .input button:hover {
-    background-color: #b2ff66;
+    background-color: #a166ff;
 }

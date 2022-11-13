@@ -65,12 +65,12 @@ const Search = () => {
     if(searchData.length !== 0 && typeof searchData !== "string") {
         return (
             <section className={classes.searchResultsWrapper}>
-                    {userData.length > 0 && 
+                    {userData && userData.length > 0 && 
                     <>
                         <h1>Users</h1>
                         <UserResults data={userData} />
                     </>}
-                    {blogData.length > 0 &&
+                    {blogData && blogData.length > 0 &&
                     <>
                         <h1>Blogs</h1>
                         <BlogResults data={blogData} />
@@ -84,7 +84,7 @@ const Search = () => {
     } else {
         return (
             <ColorRing visible={true} height="80" width="80" wrapperClass={classes.loader} 
-                colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />
+                colors={['#a166ff', '#a166ff', '#a166ff', '#a166ff', '#a166ff']} />
         )
     }
 }

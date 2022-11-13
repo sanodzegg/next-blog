@@ -1,0 +1,75 @@
+.wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.wrapper h1 {
+    margin-left: 5px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.burgerNav { 
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+.nav {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    transition: width .5s ease-in-out;
+    overflow: hidden;
+}
+
+.nav.open {
+    width: 60vw;
+}
+
+.nav {
+    float: left;
+}
+
+.nav li {
+    display: inline;
+    list-style-type: none;
+    margin: 0 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color .1s ease-in-out;
+}
+
+.nav li:hover {
+    color: #778287;
+}
+
+.nav ul {
+    display: block;
+}
+
+.nav .row {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 15px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.user {
+    display: flex;
+}
+
+.row span {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+    .row {
+        display: none !important;
+    }
+}

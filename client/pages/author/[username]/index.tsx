@@ -55,7 +55,7 @@ const Author = () => {
         </>
         :
           <ColorRing visible={true} height="80" width="80" wrapperStyle={styles}
-        colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} /> 
+        colors={['#a166ff', '#a166ff', '#a166ff', '#a166ff', '#a166ff']} /> 
       }
      </section>
   )

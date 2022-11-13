@@ -52,5 +52,10 @@
 }
 
 .navbarInner > ul span {
-  color: #b2ff66;
+  color: #a166ff;
+}
+
+.list div {
+  display: flex;
+  cursor: pointer;
 }

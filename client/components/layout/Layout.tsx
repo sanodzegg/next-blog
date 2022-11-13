@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { Flow } from "../flow/Flow";
 import Footer from "./footer/Footer";
-import { Navbar } from "./navbar/Navbar"
+import Navbar from "./navbar/Navbar"
 
 import { useDispatch, useSelector } from "react-redux";
 

@@ -41,7 +41,7 @@ const BlogsByTag = () => {
                 </>
             : blogs.length === 0 && typeof blogs !== "string" ? 
                 <ColorRing visible={true} height="80" width="80" wrapperStyle={styles}
-                colors={['#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66', '#b2ff66']} />
+                colors={['#a166ff', '#a166ff', '#a166ff', '#a166ff', '#a166ff']} />
             : <p style={pstyles}>No blogs found :&#40;</p>
             }
         </section>

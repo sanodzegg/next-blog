@@ -89,7 +89,7 @@
 }
 
 .buttons button {
-    background-color: #c1ff84;
+    background-color: #ab84ff;
     padding: 15px 25px;
     border-radius: 10px;
     color: #000;
@@ -104,7 +104,7 @@
 }
 
 .buttons button:hover {
-    background-color: #b2ff66;
+    background-color: #a166ff;
 }
 
 .buttons .disabled {
@@ -130,11 +130,11 @@
 
 .cpBtn {
     background-color: transparent !important;
-    border: 1px solid #c1ff84 !important;
+    border: 1px solid #ab84ff !important;
 }
 
 .cpBtn:hover {
-    background-color: #b2ff66 !important;
+    background-color: #a166ff !important;
 }
 
 .loader {

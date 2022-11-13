@@ -1,50 +1,31 @@
-import Image from "next/image";
+import { useEffect, useState } from 'react'
+import BurgerNav from './mobnav/BurgerNav';
 import classes from "./Navbar.module.css";
+import { PCNav } from './pcnav/PCNav';
 
-import SearchIcon from "../../../assets/icons/search.svg";
-import LoginIcon from "../../../assets/icons/login.svg";
+const Navbar = () => {
 
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
-import UserLoader from "./Loader/UserLoader";
-import { searchActions } from "../../../store/slices/search-slice";
+    const [isMobile, setIsMobile] = useState<boolean>();
 
-type stateTypes = {
-    username: string
-}
+    const handleVW = () => {
+        const vw = window.innerWidth;
 
-export const Navbar = () => {
-    const router = useRouter();
-    const dispatch = useDispatch();
-    const user = useSelector((state:RootState) => {
-        return (state.user.profile as stateTypes)
-    });
-    
-    const isUserAuth = Object.values(user).length > 0;
-    
-
-    const UserName = () => {
-        return Object.values(user).length > 0 ? <span>{user.username}</span> : <UserLoader />
+        if(vw < 600) setIsMobile(true);
+        else setIsMobile(false);
     }
+
+    useEffect(() => {
+        handleVW();
+        window.addEventListener("resize", handleVW);
+
+        return () => window.removeEventListener("resize", handleVW);
+    }, []);
 
     return (
         <nav className={classes.navbar}>
-            <div className={classes.navbarInner}>
-                <h1 onClick={() => { window.scrollTo(0, 0); router.push("/") }} className={classes.logo}>
-                    BLOGSCOM
-                </h1>
-                <ul className={classes.list}>
-                    <li><Link href="/">home</Link></li>
-                    <li><Link href="/about">about</Link></li>
-                    <li><Link href="/membership">membership</Link></li>
-                    <li><Link href="/contact">contact</Link></li>
-                    <Image src={SearchIcon.src} width={SearchIcon.width} height={SearchIcon.height} alt="search icon" onClick={() => dispatch(searchActions.OpenSearch())} />
-                    <Image src={LoginIcon.src} width={LoginIcon.width} height={LoginIcon.height} onClick={() => isUserAuth ? router.push(`/${user.username}`) : router.push(`/user`) } alt="login icon" />
-                    <UserName />
-                </ul>
-            </div>
+            {!isMobile ? <PCNav /> : <BurgerNav />}
         </nav>
-    );
-};
+    )
+}
+
+export default Navbar

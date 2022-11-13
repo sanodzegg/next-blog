@@ -30,7 +30,7 @@
 }
 
 .buttons button {
-    background-color: #c1ff84;
+    background-color: #ab84ff;
     padding: 20px 35px;
     border-radius: 10px;
     color: #000;
@@ -45,7 +45,7 @@
 }
 
 .buttons button:hover {
-    background-color: #b2ff66;
+    background-color: #a166ff;
 }
 
 .selectorWrapper {
