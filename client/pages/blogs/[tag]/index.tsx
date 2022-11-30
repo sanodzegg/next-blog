@@ -27,7 +27,7 @@ const BlogsByTag = () => {
     }
 
     const pstyles = {
-        textAlign: 'center',
+        textAlign: 'center' as 'center',
         fontSize: '25px',
         marginTop: '50px'
     }

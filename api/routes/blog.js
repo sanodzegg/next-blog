@@ -14,7 +14,6 @@ blogRoutes.route("/blogs").get((req, res) => {
    .find({})
    .toArray((err, result) => {
      if (err) throw err;
-     console.log(result.length);
      res.json(result);
    });
 });
