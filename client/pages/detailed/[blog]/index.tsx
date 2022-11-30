@@ -32,9 +32,6 @@ const BlogDetailed:NextPage = () => {
         }
     }, [blog]);
 
-    console.log(blogData);
-    
-
     return (
         <section>
             {blogData && blogData.map((e:blogDataTypes) => {

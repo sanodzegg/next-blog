@@ -126,3 +126,34 @@
         column-gap: 100px;
     }
 }
+
+@media screen and (max-width: 510px) {
+    .tag {
+        font-size: 3.529vw;
+        margin: 0.980vw;
+    }
+}
+
+@media screen and (max-width: 355px) {
+    .tags {
+        display: flex;
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    .tags::-webkit-scrollbar {
+        height: 10px;
+    }
+    .tags::-webkit-scrollbar-thumb {
+        background: #cccccc;
+        border-radius: 10px;
+    }
+    .tags::-webkit-scrollbar-thumb:hover {
+        background: #b3b3b3;
+    }
+    .tags span {
+        display: none;
+    }
+    .tag {
+        font-size: 14px;
+    }
+}

@@ -17,8 +17,6 @@ type mapProps = {
 }
 
 const AuthorBlogsDisplay = ({ blogs }:props) => {
-    console.log(blogs);
-    
     return (
         <div className={classes.blogsWrapper}>
             {blogs.map((e) => {
